@@ -2,10 +2,16 @@
   "name": "dragowl",
   "version": "1.0.0",
   "description": "🦉 A simple toolbar to drag and drop images from unsplash on the go.",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"electron ."
   },
   "author": "Sarthology",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.12.0"
+  },
+  "dependencies": {
+    "electron": "^4.0.1"
+  }
 }
