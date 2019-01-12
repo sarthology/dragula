@@ -1,0 +1,11 @@
+{
+  "name": "dragowl",
+  "version": "1.0.0",
+  "description": "🦉 A simple toolbar to drag and drop images from unsplash on the go.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarthology",
+  "license": "ISC"
+}
