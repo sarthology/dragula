@@ -1,15 +1,32 @@
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
+const electron = require('electron');
+const {
+	app,
+	BrowserWindow,
+	ipcMain,
+	nativeImage
+} = require('electron');
 const fs = require('fs');
 const path = require('path');
 
 let win;
+let display, width, height;
 
-function createWindow () {
+function createWindow() {
+	display = electron.screen.getPrimaryDisplay();
+	width = display.bounds.width;
+	height = display.bounds.height;
 	// Create the browser window.
-	win = new BrowserWindow({ 
-		width: 800, 
-		height: 600,
-		alwaysOnTop:true
+	win = new BrowserWindow({
+		width: 100,
+		height: 50,
+		movable: false,
+		resizable: false,
+		x: width,
+		y: height,
+		frame: false,
+		autoHideMenuBar: true,
+		transparent: true,
+		alwaysOnTop: true
 	});
 
 	// and load the index.html of the app.
@@ -17,15 +34,25 @@ function createWindow () {
 }
 
 ipcMain.on('ondragstart', (event, filePath) => {
-	let file = nativeImage.createFromDataURL(filePath);	
+	let file = nativeImage.createFromDataURL(filePath);
 
 	fs.writeFile('image.png', file.toPNG(), function (err) {
 		throw err;
 	});
 
 	event.sender.startDrag({
-		file:path.join(__dirname+'/image.png'),
-		icon:file
+		file: path.join(__dirname + '/image.png'),
+		icon: file
 	});
+});
+ipcMain.on('open', () => {
+	console.log(width + ' ' + height);
+
+	win.setBounds({
+		width: 400,
+		height: 200,
+		x: width - 400,
+		y: height - 300,
+	}, true);
 });
 app.on('ready', createWindow);

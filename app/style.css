@@ -1,0 +1,24 @@
+.image-canvas {
+  width: 100%;
+  height: 100%;
+  display: none;
+  object-fit: cover;
+}
+body {
+  margin: 0;
+}
+button {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 18px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
