@@ -1,10 +1,5 @@
 const electron = require('electron');
-const {
-	app,
-	BrowserWindow,
-	ipcMain,
-	nativeImage
-} = require('electron');
+const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
 const fs = require('fs');
 const path = require('path');
 
@@ -46,8 +41,6 @@ ipcMain.on('ondragstart', (event, filePath) => {
 	});
 });
 ipcMain.on('open', () => {
-	console.log(width + ' ' + height);
-
 	win.setBounds({
 		width: 400,
 		height: 200,

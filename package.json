@@ -12,6 +12,7 @@
     "eslint": "^5.12.0"
   },
   "dependencies": {
-    "electron": "^4.0.1"
+    "electron": "^4.0.1",
+    "node-fetch": "^2.3.0"
   }
 }
