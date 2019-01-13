@@ -4,11 +4,20 @@ const fetch =  require('node-fetch');
 
 /**
  * This is function gets random image from unsplash using Source Api.
- * @param {string} file - The path to the file to be read 
- * @returns {string} The data read from the file
+ * @param {null} 
+ * @returns {string} link to image
  */
 function fetchRandom() {
 	return fetch('https://source.unsplash.com/random').then(res => res.url);
 }
 
-module.exports = fetchRandom;
+/**
+ * This is function gets image from unsplash of a keyword using Source Api.
+ * @param {string} keyword to search
+ * @returns {string} link to image
+ */
+function fetchFromKeyword(keyword) {
+	return fetch('https://source.unsplash.com/all/?'+keyword).then(res => res.url);
+}
+
+module.exports = { fetchRandom, fetchFromKeyword };

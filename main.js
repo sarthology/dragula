@@ -20,7 +20,7 @@ function createWindow() {
 		y: height,
 		frame: false,
 		autoHideMenuBar: true,
-		transparent: true,
+		// transparent: true,
 		alwaysOnTop: true
 	});
 
@@ -31,21 +31,19 @@ function createWindow() {
 ipcMain.on('ondragstart', (event, filePath) => {
 	let file = nativeImage.createFromDataURL(filePath);
 
-	fs.writeFile('image.png', file.toPNG(), function (err) {
-		throw err;
-	});
-
-	event.sender.startDrag({
-		file: path.join(__dirname + '/image.png'),
-		icon: file
+	fs.writeFile('image.png', file.toPNG(), () => {
+		event.sender.startDrag({
+			file: path.join(__dirname + '/image.png'),
+			icon: file
+		});
 	});
 });
 ipcMain.on('open', () => {
 	win.setBounds({
-		width: 400,
+		width: 300,
 		height: 200,
-		x: width - 400,
-		y: height - 300,
+		x: width - 310,
+		y: height - 280,
 	}, true);
 });
 app.on('ready', createWindow);

@@ -1,19 +1,32 @@
 const { ipcRenderer } = require('electron');
-const fetchRandom = require('./util/unsplash');
+const unsplash = require('./util/unsplash');
 
 document.getElementById('drag').ondragstart = (event) => {
 	event.preventDefault();
 	ipcRenderer.send('ondragstart', getDataUrl(event.currentTarget));
 };
 
-document.getElementsByTagName('button')[0].onclick = (event) => {
+document.getElementById('enter').onclick = (event) => {
 	event.preventDefault();
-	fetchRandom().then((url)=>{
+
+	unsplash.fetchRandom().then((url)=>{
 		document.getElementById('drag').setAttribute('src',url);
 	});
-	document.getElementById('drag').style = 'display:block';
+
+	document.getElementsByClassName('main')[0].style = 'display:block';
+	document.getElementById('enter').style = 'display:none';
+	
 	ipcRenderer.send('open');
 };
+
+document.getElementById('keyword').onkeydown = (event) =>{
+	if(event.keyCode === 13){
+		unsplash.fetchFromKeyword(event.currentTarget.value).then((url)=>{
+			document.getElementById('drag').setAttribute('src',url);
+		});
+	}
+};
+
 let getDataUrl = function (img) {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
