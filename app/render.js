@@ -27,6 +27,20 @@ document.getElementById('keyword').onkeydown = (event) =>{
 	}
 };
 
+document.getElementById('reload').onclick = (event) =>{
+	event.preventDefault();
+	if(document.getElementById('keyword').value){
+		unsplash.fetchFromKeyword(document.getElementById('keyword').value).then((url)=>{
+			document.getElementById('drag').setAttribute('src',url);
+		});
+	}
+	else{
+		unsplash.fetchRandom().then((url)=>{
+			document.getElementById('drag').setAttribute('src',url);
+		});
+	}
+};
+
 let getDataUrl = function (img) {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
