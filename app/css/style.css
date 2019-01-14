@@ -56,11 +56,14 @@ button:focus, input:focus {
   padding: 5px;
   border: none;
   font-size: 12px;
-  color: #3e3c3c;
+  color:#ffffff;
   opacity: 0;
+  background: transparent;
+  border: 2px solid white;
+  font-weight: bold;
   transition: opacity 1s;
 }
 
-.search:hover  input#keyword {
+input#keyword:hover {
   opacity: 1;
 }
