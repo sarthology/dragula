@@ -41,6 +41,13 @@ document.getElementById('reload').onclick = (event) =>{
 	}
 };
 
+document.getElementById('minimize').onclick = (event) =>{
+	event.preventDefault();
+	document.getElementsByClassName('main')[0].style = 'display:none';
+	document.getElementById('enter').style = 'display:block';
+	ipcRenderer.send('close');
+};
+
 let getDataUrl = function (img) {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');

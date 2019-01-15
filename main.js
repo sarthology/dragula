@@ -16,11 +16,10 @@ function createWindow() {
 		height: 50,
 		movable: false,
 		resizable: false,
-		x: width,
-		y: height,
+		x: width - 20,
+		y: height - 20,
 		frame: false,
 		autoHideMenuBar: true,
-		// transparent: true,
 		alwaysOnTop: true
 	});
 
@@ -44,6 +43,14 @@ ipcMain.on('open', () => {
 		height: 200,
 		x: width - 310,
 		y: height - 280,
+	}, true);
+});
+ipcMain.on('close', () => {
+	win.setBounds({
+		width: 100,
+		height: 50,
+		x: width - 110,
+		y: height - 130
 	}, true);
 });
 app.on('ready', createWindow);

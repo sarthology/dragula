@@ -1,13 +1,13 @@
-.image-canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+body {
+  margin: 0;
 }
 .main{
     display: none;
 }
-body {
-  margin: 0;
+.image-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 button {
   background-color: white;
@@ -31,6 +31,8 @@ button:focus, input:focus {
     background: #00000080;
     color: white;
     height: 25px;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
 }
 .main{
     overflow: hidden;
@@ -43,12 +45,11 @@ button:focus, input:focus {
     display: inline-flex;
     cursor: pointer;
 }
-.reload img{
+.reload img,.minimize img{
   width: 15px;
   padding: 5px;
-}
-.reload{
   cursor: pointer;
+
 }
 #keyword{
   margin: 10px auto;
