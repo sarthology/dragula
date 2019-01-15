@@ -2,6 +2,7 @@ const electron = require('electron');
 const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
 const fs = require('fs');
 const path = require('path');
+const { download } = require('electron-dl');
 
 let win;
 let display, width, height;
@@ -53,4 +54,8 @@ ipcMain.on('close', () => {
 		y: height - 130
 	}, true);
 });
+ipcMain.on('download', (event,args) => {
+	download(BrowserWindow.getFocusedWindow(),args.url);
+});
+
 app.on('ready', createWindow);

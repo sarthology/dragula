@@ -32,7 +32,7 @@ button:focus, input:focus {
     color: white;
     height: 25px;
     display: grid;
-    grid-template-columns: 8fr 1fr;
+    grid-template-columns: 7fr 1fr 1fr;
 }
 .main{
     overflow: hidden;
@@ -45,11 +45,10 @@ button:focus, input:focus {
     display: inline-flex;
     cursor: pointer;
 }
-.reload img,.minimize img{
+.reload img,.minimize img,.download img{
   width: 15px;
   padding: 5px;
   cursor: pointer;
-
 }
 #keyword{
   margin: 10px auto;

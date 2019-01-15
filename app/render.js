@@ -47,6 +47,12 @@ document.getElementById('minimize').onclick = (event) =>{
 	document.getElementById('enter').style = 'display:block';
 	ipcRenderer.send('close');
 };
+document.getElementById('download').onclick = (event) =>{
+	event.preventDefault();
+	ipcRenderer.send('download',{
+		'url': document.getElementById('drag').getAttribute('src')
+	});
+};
 
 let getDataUrl = function (img) {
 	var canvas = document.createElement('canvas');
