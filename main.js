@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const { download } = require('electron-dl');
@@ -56,6 +56,10 @@ ipcMain.on('close', () => {
 });
 ipcMain.on('download', (event,args) => {
 	download(BrowserWindow.getFocusedWindow(),args.url);
+});
+
+ipcMain.on('markdown', (event,args) => {
+	clipboard.writeText('![alt data]('+ args.url+')');
 });
 
 app.on('ready', createWindow);

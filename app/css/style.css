@@ -32,7 +32,7 @@ button:focus, input:focus {
     color: white;
     height: 25px;
     display: grid;
-    grid-template-columns: 7fr 1fr 1fr;
+    grid-template-columns: 6fr 1fr 1fr 1fr;
 }
 .main{
     overflow: hidden;
@@ -45,7 +45,7 @@ button:focus, input:focus {
     display: inline-flex;
     cursor: pointer;
 }
-.reload img,.minimize img,.download img{
+.reload img,.minimize img,.download img,.markdown img{
   width: 15px;
   padding: 5px;
   cursor: pointer;

@@ -47,9 +47,17 @@ document.getElementById('minimize').onclick = (event) =>{
 	document.getElementById('enter').style = 'display:block';
 	ipcRenderer.send('close');
 };
+
 document.getElementById('download').onclick = (event) =>{
 	event.preventDefault();
 	ipcRenderer.send('download',{
+		'url': document.getElementById('drag').getAttribute('src')
+	});
+};
+
+document.getElementById('markdown').onclick = (event) =>{
+	event.preventDefault();
+	ipcRenderer.send('markdown',{
 		'url': document.getElementById('drag').getAttribute('src')
 	});
 };
