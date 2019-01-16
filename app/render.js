@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron');
 const unsplash = require('./util/unsplash');
 
+
 document.getElementById('drag').ondragstart = (event) => {
 	event.preventDefault();
 	ipcRenderer.send('ondragstart', getDataUrl(event.currentTarget));
@@ -11,9 +12,10 @@ document.getElementById('enter').onclick = (event) => {
 
 	unsplash.fetchRandom().then((url)=>{
 		document.getElementById('drag').setAttribute('src',url);
+		// checkOrientation(document.getElementById('drag'));
 	});
 
-	document.getElementsByClassName('main')[0].style = 'display:block';
+	document.getElementsByClassName('main')[0].style = 'display:inline-flex;';
 	document.getElementById('enter').style = 'display:none';
 	
 	ipcRenderer.send('open');
@@ -23,6 +25,7 @@ document.getElementById('keyword').onkeydown = (event) =>{
 	if(event.keyCode === 13){
 		unsplash.fetchFromKeyword(event.currentTarget.value).then((url)=>{
 			document.getElementById('drag').setAttribute('src',url);
+			// checkOrientation(document.getElementById('drag'));
 		});
 	}
 };
@@ -32,11 +35,13 @@ document.getElementById('reload').onclick = (event) =>{
 	if(document.getElementById('keyword').value){
 		unsplash.fetchFromKeyword(document.getElementById('keyword').value).then((url)=>{
 			document.getElementById('drag').setAttribute('src',url);
+			// checkOrientation(document.getElementById('drag'));
 		});
 	}
 	else{
 		unsplash.fetchRandom().then((url)=>{
 			document.getElementById('drag').setAttribute('src',url);
+			// checkOrientation(document.getElementById('drag'));
 		});
 	}
 };
@@ -62,7 +67,13 @@ document.getElementById('markdown').onclick = (event) =>{
 	});
 };
 
-let getDataUrl = function (img) {
+document.getElementById('original').onclick = (event) =>{
+	event.preventDefault();
+	document.getElementById('drag').classList.toggle('image-original');
+	document.getElementById('drag').classList.toggle('image-canvas');
+};
+
+let getDataUrl = (img)=> {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
 	
@@ -72,3 +83,12 @@ let getDataUrl = function (img) {
 
 	return canvas.toDataURL();
 };
+
+// let checkOrientation = (img)=>{	
+// 	if(img.naturalHeight > img.naturalWidth){
+// 		document.querySelector('#original p').setAttribute('style','display:block');
+// 	}
+// 	else{
+// 		document.querySelector('#original p').setAttribute('style','display:none');
+// 	}
+// };
