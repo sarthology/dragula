@@ -99,3 +99,28 @@ input:focus {
   filter: blur(2px);
   opacity: 0.4;
 }
+.image-blur{
+  filter: blur(2px);
+  opacity: 0.4;
+}
+.loader{
+  margin: 70px auto;
+  color: white;
+  padding: 5px;
+}
+.alert img{
+  width: 20px;
+  animation:spin 2s linear infinite;
+}
+.alert{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  transition: display 1s;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

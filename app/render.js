@@ -12,6 +12,12 @@ document.getElementById('drag').ondragstart = (event) => {
 	}
 };
 
+document.getElementById('drag').onload= (event) => {
+	event.preventDefault();
+	document.getElementsByClassName('alert')[0].setAttribute('style','display:none;');
+	document.getElementById('drag').classList.remove('image-blur'); 
+};
+
 document.getElementById('enter').onclick = (event) => {
 	event.preventDefault();
 
@@ -37,6 +43,9 @@ document.getElementById('keyword').onkeydown = (event) => {
 
 document.getElementById('reload').onclick = (event) => {
 	event.preventDefault();
+	document.getElementsByClassName('alert')[0].setAttribute('style','display:inline-flex;');
+	document.getElementById('drag').classList.add('image-blur'); 
+
 	if (document.getElementById('keyword').value) {
 		unsplash.fetchFromKeyword(document.getElementById('keyword').value).then((url) => {
 			document.getElementById('drag').setAttribute('src', url);
