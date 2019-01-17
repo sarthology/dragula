@@ -7,17 +7,17 @@ const fetch =  require('node-fetch');
  * @param {null} 
  * @returns {string} link to image
  */
-function fetchRandom() {
+const fetchRandom = () => {
 	return fetch('https://source.unsplash.com/random').then(res => res.url);
-}
+};
 
 /**
  * This is function gets image from unsplash of a keyword using Source Api.
  * @param {string} keyword to search
  * @returns {string} link to image
  */
-function fetchFromKeyword(keyword) {
+const fetchFromKeyword = (keyword) => {
 	return fetch('https://source.unsplash.com/all/?'+keyword).then(res => res.url);
-}
+};
 
 module.exports = { fetchRandom, fetchFromKeyword };
