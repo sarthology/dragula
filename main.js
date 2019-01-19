@@ -57,7 +57,6 @@ ipcMain.on('close', () => {
 ipcMain.on('download', (event,args) => {
 	download(BrowserWindow.getFocusedWindow(),args.url);
 });
-
 ipcMain.on('markdown', (event,args) => {
 	clipboard.writeText('![alt data]('+ args.url+')');
 });

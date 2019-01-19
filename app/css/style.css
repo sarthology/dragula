@@ -103,12 +103,19 @@ input:focus {
   filter: blur(2px);
   opacity: 0.4;
 }
-.loader{
+.loader,.message{
   margin: 70px auto;
   color: white;
   padding: 5px;
 }
-.alert img{
+.message{
+  height: 26px;
+  display: none;
+}
+.message img{
+  width: 25px;
+}
+.loader img{
   width: 20px;
   animation:spin 2s linear infinite;
 }

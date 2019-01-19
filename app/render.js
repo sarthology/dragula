@@ -12,6 +12,8 @@ const download = document.getElementById('download');
 const markdown = document.getElementById('markdown');
 const original = document.getElementById('original');
 const alert = document.getElementById('alert');
+const loader = document.getElementById('loader');
+const message = document.getElementById('message');
 const main = document.getElementById('main');
 
 
@@ -60,6 +62,7 @@ markdown.onclick = (event) => {
 	ipcRenderer.send('markdown', {
 		'url': drag.getAttribute('src')
 	});
+	markdownAnimate();
 };
 
 original.onclick = (event) => {
@@ -85,7 +88,7 @@ drag.onload= (event) => {
 };
 
 // Common functions
-let loadImage = (keyword)=>{
+const loadImage = (keyword)=>{
 
 	alert.setAttribute('style','display:inline-flex;');
 	drag.classList.add('image-blur'); 
@@ -100,4 +103,19 @@ let loadImage = (keyword)=>{
 			drag.setAttribute('src',url);
 		});
 	}
+};
+
+const markdownAnimate = ()=>{
+
+	alert.setAttribute('style','display:inline-flex;');
+	loader.setAttribute('style','display:none;');
+	message.setAttribute('style','display:block;');
+	drag.classList.add('image-blur'); 
+	
+	setTimeout(() => {
+		alert.setAttribute('style','display:none;');
+		loader.setAttribute('style','display:block;');
+		message.setAttribute('style','display:none;');
+		drag.classList.remove('image-blur'); 
+	}, 2000);
 };

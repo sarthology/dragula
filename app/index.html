@@ -10,16 +10,32 @@
 </head>
 
 <body>
+    <!-- Main Section -->
     <div class="main" id="main">
+
+        <!-- Search Section -->
         <div class="search">
             <input type="text" id="keyword">
         </div>
+
+        <!-- Image canvas -->
         <img class="image-canvas" id="drag">
+
+        <!-- Alert Section -->
         <div class="alert" id="alert">
-            <div class="loader">
+
+            <!-- Image loader -->
+            <div class="loader" id="loader">
                 <img src="assets/refresh.png" alt="">
             </div>
+
+            <!-- Message Alerts -->
+            <div class="message" id="message">
+                <img src="assets/check.png" alt="">
+            </div>
         </div>
+
+        <!-- toolbar section -->
         <div class="toolbar">
             <div class="reload" id="reload">
                 <img src="assets/refresh.png" alt="">
@@ -37,10 +53,14 @@
                 <img src="assets/minimize.png" alt="">
             </div>
         </div>
+
     </div>
+
+    <!-- Button to enter -->
     <div id="enter">
         <button>Dragula</button>
     </div>
+
     <script src="render.js"></script>
 </body>
 
