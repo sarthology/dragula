@@ -1,12 +1,19 @@
+'use strict';
+
+// Dependencies
 const electron = require('electron');
 const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
-const fs = require('fs');
-const path = require('path');
 const { download } = require('electron-dl');
 
+// Native imports
+const fs = require('fs');
+const path = require('path');
+
+// Global Variables
 let win;
 let display, width, height;
 
+//Function to create app window
 function createWindow() {
 	display = electron.screen.getPrimaryDisplay();
 	width = display.bounds.width;
@@ -28,6 +35,7 @@ function createWindow() {
 	win.loadFile('app/index.html');
 }
 
+// Function to handle native drag and drop
 ipcMain.on('ondragstart', (event, filePath) => {
 	let file = nativeImage.createFromDataURL(filePath);
 
@@ -38,6 +46,18 @@ ipcMain.on('ondragstart', (event, filePath) => {
 		});
 	});
 });
+
+// Function to handle native download
+ipcMain.on('download', (event,args) => {
+	download(BrowserWindow.getFocusedWindow(),args.url);
+});
+
+// Function to copy markdown code to clipboard
+ipcMain.on('markdown', (event,args) => {
+	clipboard.writeText('![alt data]('+ args.url+')');
+});
+
+// Function to resize window when main window opens
 ipcMain.on('open', () => {
 	win.setBounds({
 		width: 300,
@@ -46,6 +66,8 @@ ipcMain.on('open', () => {
 		y: height - 280,
 	}, true);
 });
+
+// Function to resize window when main window closes
 ipcMain.on('close', () => {
 	win.setBounds({
 		width: 100,
@@ -54,11 +76,6 @@ ipcMain.on('close', () => {
 		y: height - 130
 	}, true);
 });
-ipcMain.on('download', (event,args) => {
-	download(BrowserWindow.getFocusedWindow(),args.url);
-});
-ipcMain.on('markdown', (event,args) => {
-	clipboard.writeText('![alt data]('+ args.url+')');
-});
 
+// App ready event
 app.on('ready', createWindow);

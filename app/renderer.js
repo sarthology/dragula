@@ -1,4 +1,9 @@
+'use strict';
+
+// Dependencies
 const { ipcRenderer } = require('electron');
+
+// Module imports
 const unsplash = require('./util/unsplash');
 const canvas = require('./util/canvas');
 
@@ -18,7 +23,7 @@ const main = document.getElementById('main');
 
 
 
-// Events to load image
+// Event to open main window
 enter.onclick = (event) => {
 	event.preventDefault();
 
@@ -31,18 +36,22 @@ enter.onclick = (event) => {
 
 	ipcRenderer.send('open');
 };
-reload.onclick = (event) => {
-	event.preventDefault();
 
-	loadImage(keyword.value);
-};
+// Event to search image by keyword 
 keyword.onkeydown = (event) => {
 	if (event.keyCode === 13) {
 		loadImage(event.currentTarget.value);
 	}
 };
 
-// Events for toolbar actions
+// Event to load new image 
+reload.onclick = (event) => {
+	event.preventDefault();
+
+	loadImage(keyword.value);
+};
+
+// Event to minimize main window 
 minimize.onclick = (event) => {
 	event.preventDefault();
 	main.style = 'display:none';
@@ -50,6 +59,7 @@ minimize.onclick = (event) => {
 	ipcRenderer.send('close');
 };
 
+// Event to download the image 
 download.onclick = (event) => {
 	event.preventDefault();
 	ipcRenderer.send('download', {
@@ -57,6 +67,7 @@ download.onclick = (event) => {
 	});
 };
 
+// Event to copy the markdown code
 markdown.onclick = (event) => {
 	event.preventDefault();
 	ipcRenderer.send('markdown', {
@@ -65,13 +76,14 @@ markdown.onclick = (event) => {
 	markdownAnimate();
 };
 
+// Event to see the original size of image
 original.onclick = (event) => {
 	event.preventDefault();
 	drag.classList.toggle('image-original');
 	drag.classList.toggle('image-canvas');
 };
 
-// Other events
+// Event to start image dragging 
 drag.ondragstart = (event) => {
 	event.preventDefault();
 	if(document.getElementsByClassName('image-original')[0]){
@@ -81,13 +93,15 @@ drag.ondragstart = (event) => {
 		ipcRenderer.send('ondragstart', canvas.getOriginalDataUrl(event.currentTarget));
 	}
 };
+
+// Event to check if image loaded
 drag.onload= (event) => {
 	event.preventDefault();
 	alert.setAttribute('style','display:none;');
 	drag.classList.remove('image-blur'); 
 };
 
-// Common functions
+// Function to fetch image from unsplash
 const loadImage = (keyword)=>{
 
 	alert.setAttribute('style','display:inline-flex;');
@@ -105,6 +119,7 @@ const loadImage = (keyword)=>{
 	}
 };
 
+// Function to do animation for markdown code successfully copied
 const markdownAnimate = ()=>{
 
 	alert.setAttribute('style','display:inline-flex;');
