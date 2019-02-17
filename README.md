@@ -1,4 +1,4 @@
-![](/Users/sarthaksharma/Downloads/Copy of Copy of Nomoogle.png)
+![](https://imgur.com/24ZwK7u)
 
 ## Dargula
 

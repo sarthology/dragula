@@ -6,6 +6,7 @@ const { ipcRenderer } = require('electron');
 // Module imports
 const unsplash = require('./util/unsplash');
 const canvas = require('./util/canvas');
+const imgur = require('./util/imgur'); 
 
 //Variables for Dom references
 const enter = document.getElementById('enter');
@@ -70,10 +71,19 @@ download.onclick = (event) => {
 // Event to copy the markdown code
 markdown.onclick = (event) => {
 	event.preventDefault();
-	ipcRenderer.send('markdown', {
-		'url': drag.getAttribute('src')
+
+	alert.setAttribute('style','display:inline-flex;');
+	drag.classList.add('image-blur'); 
+
+	imgur.unploadImage(canvas.getDataUrl(drag)).then((body)=>{
+		alert.setAttribute('style','display:none;');
+		drag.classList.remove('image-blur');
+		const data = JSON.parse(body).data;
+		ipcRenderer.send('markdown', {
+			'url': data.link
+		});
+		markdownAnimate();
 	});
-	markdownAnimate();
 };
 
 // Event to see the original size of image

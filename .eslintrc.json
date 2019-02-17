@@ -9,6 +9,7 @@
         "ecmaVersion": 2016
     },
     "rules": {
+        "no-console":"off",
         "indent": [
             "error",
             "tab"

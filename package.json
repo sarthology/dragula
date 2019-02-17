@@ -14,6 +14,8 @@
   "dependencies": {
     "electron": "^4.0.1",
     "electron-dl": "^1.12.0",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
   }
 }
