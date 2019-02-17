@@ -71,11 +71,18 @@ download.onclick = (event) => {
 // Event to copy the markdown code
 markdown.onclick = (event) => {
 	event.preventDefault();
-
+	let img;
 	alert.setAttribute('style','display:inline-flex;');
 	drag.classList.add('image-blur'); 
 
-	imgur.unploadImage(canvas.getDataUrl(drag)).then((body)=>{
+	if(document.getElementsByClassName('image-original')[0]){
+		img = canvas.getDataUrl(drag);
+	}
+	else{
+		img = canvas.getOriginalDataUrl(drag);
+	}
+
+	imgur.unploadImage(img).then((body)=>{
 		alert.setAttribute('style','display:none;');
 		drag.classList.remove('image-blur');
 		const data = JSON.parse(body).data;
