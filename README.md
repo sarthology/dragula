@@ -1,4 +1,5 @@
-![](https://imgur.com/24ZwK7u)
+
+<div align="center"><img src="https://i.imgur.com/24ZwK7u.png"></div>
 
 ## Dargula
 
