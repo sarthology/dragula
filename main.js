@@ -39,9 +39,10 @@ function createWindow() {
 ipcMain.on('ondragstart', (event, filePath) => {
 	let file = nativeImage.createFromDataURL(filePath);
 
-	fs.writeFile('image.png', file.toPNG(), () => {
+	fs.writeFile('/tmp/image.png', file.toPNG(), (err) => {
+		if(err) console.log(err);
 		event.sender.startDrag({
-			file: path.join(__dirname + '/image.png'),
+			file: '/tmp/image.png',
 			icon: file
 		});
 	});
