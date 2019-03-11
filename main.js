@@ -4,32 +4,33 @@
 const electron = require('electron');
 const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
 const { download } = require('electron-dl');
+var Positioner = require('electron-positioner');
 
 // Native imports
 const fs = require('fs');
 const path = require('path');
 
 // Global Variables
-let win;
-let display, width, height;
+let win,display, width, height, positioner;
 
 //Function to create app window
 function createWindow() {
 	display = electron.screen.getPrimaryDisplay();
-	width = display.bounds.width;
-	height = display.bounds.height;
+	width = display.workAreaSize.width;
+	height = display.workAreaSize.height;
 	// Create the browser window.
 	win = new BrowserWindow({
 		width: 100,
 		height: 50,
 		movable: false,
 		resizable: false,
-		x: width - 20,
-		y: height - 20,
+		x: width,
+		y: height,
 		frame: false,
 		autoHideMenuBar: true,
 		alwaysOnTop: true
 	});
+	positioner = new Positioner(win);
 
 	// and load the index.html of the app.
 	win.loadFile('app/index.html');
@@ -63,9 +64,8 @@ ipcMain.on('open', () => {
 	win.setBounds({
 		width: 300,
 		height: 200,
-		x: width - 310,
-		y: height - 280,
-	}, true);
+	});
+	positioner.move('bottomRight');
 });
 
 // Function to resize window when main window closes
@@ -73,9 +73,8 @@ ipcMain.on('close', () => {
 	win.setBounds({
 		width: 100,
 		height: 50,
-		x: width - 110,
-		y: height - 130
-	}, true);
+	});
+	positioner.move('bottomRight');
 });
 
 // App ready event
