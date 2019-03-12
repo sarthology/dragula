@@ -8,30 +8,24 @@ var Positioner = require('electron-positioner');
 
 // Native imports
 const fs = require('fs');
-const path = require('path');
 
 // Global Variables
 let win,display, width, height, positioner;
 
 //Function to create app window
 function createWindow() {
-	display = electron.screen.getPrimaryDisplay();
-	width = display.workAreaSize.width;
-	height = display.workAreaSize.height;
 	// Create the browser window.
 	win = new BrowserWindow({
 		width: 100,
 		height: 50,
 		movable: false,
 		resizable: false,
-		x: width,
-		y: height,
 		frame: false,
 		autoHideMenuBar: true,
 		alwaysOnTop: true
 	});
 	positioner = new Positioner(win);
-
+	positioner.move('bottomRight');
 	// and load the index.html of the app.
 	win.loadFile('app/index.html');
 }
