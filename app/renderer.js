@@ -63,6 +63,7 @@ minimize.onclick = (event) => {
 // Event to download the image 
 download.onclick = (event) => {
 	event.preventDefault();
+	markdownAnimate();
 	ipcRenderer.send('download', {
 		'url': drag.getAttribute('src')
 	});

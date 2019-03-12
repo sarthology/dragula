@@ -1,7 +1,6 @@
 'use strict';
 
 // Dependencies
-const electron = require('electron');
 const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
 const { download } = require('electron-dl');
 var Positioner = require('electron-positioner');
@@ -10,7 +9,7 @@ var Positioner = require('electron-positioner');
 const fs = require('fs');
 
 // Global Variables
-let win,display, width, height, positioner;
+let win, positioner;
 
 //Function to create app window
 function createWindow() {
