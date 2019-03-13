@@ -6,7 +6,7 @@ const options = {
 		type: 'base64'
 	},
 	headers: {
-		'Authorization': 'Client-ID 8d2e0f29107b225'
+		'Authorization': 'Client-ID 013b7215a7f6626'
 	},
 	dataType: 'json'
 };

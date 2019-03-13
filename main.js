@@ -15,8 +15,8 @@ let win, positioner;
 function createWindow() {
 	// Create the browser window.
 	win = new BrowserWindow({
-		width: 100,
-		height: 50,
+		width: 500,
+		height: 400,
 		movable: false,
 		resizable: false,
 		frame: false,
@@ -24,7 +24,7 @@ function createWindow() {
 		alwaysOnTop: true
 	});
 	positioner = new Positioner(win);
-	positioner.move('bottomRight');
+	positioner.move('center');
 	// and load the index.html of the app.
 	win.loadFile('app/index.html');
 }
