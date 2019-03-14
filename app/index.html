@@ -62,14 +62,30 @@
     </div> -->
 
     <!-- onboard panel -->
-    <div class="Welcome">
-        <div class="video">
-            <video autoplay muted id="myVideo">
-                <source src="assets/logo.mp4" type="video/mp4">
-            </video>
+    <div class="onboarding">
+        <div class="welcome">
+            <div class="video">
+                <video autoplay muted id="myVideo">
+                    <source src="assets/logo.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="logo">
+                <p>Dragula <span>Beta</span></p>
+            </div>
         </div>
-        <div class="logo animated slideInUp">
-            <p>Dragula <span>Beta</span></p>
+
+        <div class="how-to">
+            <h1>How to use Dragula?</h1>
+            <img src="assets/use.png" alt="">
+            <div class="help">
+                <p id="s1" class="active">Reload the new image</p>
+                <p id="s2">See the original image</p>
+                <p id="s3">Copy the link of the image</p>
+                <p id="s4">Download the image</p>
+                <p id="s5">Minimize the window</p>
+                <button class="next">Next</button>
+            </div>
+            <span class="indicator"></span>
         </div>
     </div>
     <script src="renderer.js"></script>

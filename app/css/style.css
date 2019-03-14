@@ -100,31 +100,38 @@ input:focus {
   opacity: 1;
 }
 
-.search:hover ~ #drag{
+.search:hover~#drag {
   filter: blur(2px);
   opacity: 0.4;
 }
-.image-blur{
+
+.image-blur {
   filter: blur(2px);
   opacity: 0.4;
 }
-.loader,.message{
+
+.loader,
+.message {
   margin: 70px auto;
   color: white;
   padding: 5px;
 }
-.message{
+
+.message {
   height: 26px;
   display: none;
 }
-.message img{
+
+.message img {
   width: 25px;
 }
-.loader img{
+
+.loader img {
   width: 20px;
-  animation:spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
-.alert{
+
+.alert {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -132,17 +139,20 @@ input:focus {
   display: none;
   transition: display 1s;
 }
-video{
+
+video {
   width: 100%;
   height: 100%;
   margin-top: -90px;
 }
-.logo{
+
+.logo {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-.logo p{
+
+.logo p {
   text-align: center;
   font-family: 'OpenSans', sans-serif;
   color: #3f3952;
@@ -150,16 +160,139 @@ video{
   font-size: 45px;
   margin-bottom: 35px;
 }
-.logo p span{
+
+.logo p span {
   color: #e43e3e;
   font-size: 14px;
   margin-top: 8px;
   font-weight: 100;
   position: absolute;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.window,
+.slide {
+  position: absolute;
+}
+
+.welcome {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-delay: 6s;
+  animation-fill-mode: forwards;
+}
+
+.how-to h1 {
+  font-family: 'OpenSans', sans-serif;
+  margin: 0;
+  font-weight: 100;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.how-to {
+  display: none;
+}
+
+.how-to img {
+  margin: -10px auto -15px auto;
+  width: 70%;
+}
+
+.help p {
+  text-align: center;
+  font-family: "OpenSans";
+  margin: 0;
+  font-size: 22px;
+  display: none
+}
+.help .active{
+  display: block;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.help button {
+  font-family: "OpenSans";
+  float: right;
+  padding: 30px 26px;
+}
+.indicator{
+  position: absolute;
+  background: #F44336;
+  width: 6px;
+  height: 6px;
+  border-radius: 12px;
+  left: 0;
+  margin-top: 238px;
+  margin-left: 136px;
+}
+.logo {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  animation-delay: 4.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 @-webkit-keyframes slideInUp {
   from {
@@ -185,17 +318,4 @@ video{
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
-}
-
-.slideInUp {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-}
-
-.animated {
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-  animation-delay: 4.5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
 }

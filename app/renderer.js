@@ -21,22 +21,26 @@ const alert = document.getElementById('alert');
 const loader = document.getElementById('loader');
 const message = document.getElementById('message');
 const main = document.getElementById('main');
+const welcome = document.querySelector('.welcome');
+const how = document.querySelector('.how-to');
+const next = document.querySelector('.next');
+const indicator = document.querySelector('.indicator');
 
 
 
-// Event to open main window
-enter.onclick = (event) => {
-	event.preventDefault();
+// // Event to open main window
+// enter.onclick = (event) => {
+// 	event.preventDefault();
 
-	if(!drag.getAttribute('src')){
-		loadImage();
-	}
+// 	if(!drag.getAttribute('src')){
+// 		loadImage();
+// 	}
 
-	main.style = 'display:inline-flex;';
-	enter.style = 'display:none';
+// 	main.style = 'display:inline-flex;';
+// 	enter.style = 'display:none';
 
-	ipcRenderer.send('open');
-};
+// 	ipcRenderer.send('open');
+// };
 
 // Event to search image by keyword 
 keyword.onkeydown = (event) => {
@@ -101,6 +105,20 @@ original.onclick = (event) => {
 	drag.classList.toggle('image-canvas');
 };
 
+next.onclick = (event) =>{
+	event.preventDefault();
+
+	const active = document.querySelector('.active');
+	let currentState = active.getAttribute('id');
+
+	if(currentState!='s5'){
+		active.classList.remove('active');
+		let activateState = 's' + (Number(currentState.split('s')[1]) + 1);
+		shiftIndicator(activateState);
+		document.getElementById(activateState).classList.add('active');
+	}
+};
+
 // Event to start image dragging 
 drag.ondragstart = (event) => {
 	event.preventDefault();
@@ -117,6 +135,14 @@ drag.onload= (event) => {
 	event.preventDefault();
 	alert.setAttribute('style','display:none;');
 	drag.classList.remove('image-blur'); 
+};
+
+//Onboarding animation
+window.onload =()=>{
+	setInterval(()=>{
+		welcome.style ='display:none';
+		how.style='display:grid';
+	},7000);
 };
 
 // Function to fetch image from unsplash
@@ -151,4 +177,19 @@ const markdownAnimate = ()=>{
 		message.setAttribute('style','display:none;');
 		drag.classList.remove('image-blur'); 
 	}, 2000);
+};
+
+const shiftIndicator =(state)=>{
+	if(state==='s2'){
+		indicator.style = 'margin-top: 230px;margin-left: 148px;';
+	}
+	else if(state==='s3'){
+		indicator.style = 'margin-top: 238px;margin-left: 293px;';
+	}
+	else if(state==='s4'){
+		indicator.style = 'margin-top: 238px;margin-left: 322px;';
+	}
+	else if(state==='s5'){
+		indicator.style = 'margin-top: 230px;margin-left: 365px;';
+	}
 };
