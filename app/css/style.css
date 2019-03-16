@@ -170,7 +170,8 @@ video {
 }
 
 .window,
-.slide {
+.slide,
+.join {
   position: absolute;
 }
 
@@ -181,7 +182,10 @@ video {
   animation-fill-mode: forwards;
 }
 
-.how-to h1 {
+.how-to h1,
+.join h1,
+.join h2,
+.join h3{
   font-family: 'OpenSans', sans-serif;
   margin: 0;
   font-weight: 100;
@@ -189,13 +193,51 @@ video {
   padding-top: 15px;
 }
 
+.join,
 .how-to {
   display: none;
+  width: 100%;
+}
+
+.mail input {
+  border: none;
+  padding: 6px;
+  width: 230px;
+  font-size: 20px;
+  color: #353434;
+  font-weight: 300;
+}
+
+.mail {
+  margin: 25px auto;
+  border: 1px solid #e3e3e3;
+}
+
+.mail button {
+  background: #0ed085;
+  padding: 11px;
+  margin-left: -4px;
+  color: white;
 }
 
 .how-to img {
   margin: -10px auto -15px auto;
   width: 70%;
+}
+
+.join h1 span {
+  color: #d4584f;
+}
+
+.join h1 {
+  font-size: 25px;
+  margin-top:180px;
+}
+.join h2{
+  font-size: 17px;
+}
+.join img{
+  margin: 0 auto;
 }
 
 .help p {
@@ -205,18 +247,21 @@ video {
   font-size: 22px;
   display: none
 }
-.help .active{
+
+.help .active {
   display: block;
   animation-name: fadeIn;
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
+
 .help button {
   font-family: "OpenSans";
   float: right;
   padding: 30px 26px;
 }
-.indicator{
+
+.indicator {
   position: absolute;
   background: #F44336;
   width: 6px;
@@ -226,6 +271,7 @@ video {
   margin-top: 238px;
   margin-left: 136px;
 }
+
 .logo {
   -webkit-animation-name: slideInUp;
   animation-name: slideInUp;
@@ -235,7 +281,28 @@ video {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-
+.animation img{
+  position: absolute;
+  margin-bottom: 20px;
+}
+.animation .vamp{
+  width: 60px;
+  margin-top: 100px;
+  animation: moveVamp 9s linear infinite;
+}
+.animation .castle{
+  margin-left: 250px;
+  width: 130px;
+  margin-top: 30px;
+}
+.animation .bat{
+  width: 70px;
+  transform: rotateY(180deg);
+  margin-left: 300px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: moveBat 9s linear infinite;
+}
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
@@ -274,6 +341,7 @@ video {
     opacity: 0;
   }
 }
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -317,5 +385,44 @@ video {
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes moveVamp {
+  0% {
+    margin-left:-40px;
+    opacity: 1;
+  }
+  40%{
+    opacity: 1;
+  }
+  66%{
+    margin-left:300px;
+    opacity: 0;
+  }
+  100% {
+   opacity: 0;
+  }
+}
+
+@keyframes moveBat {
+  0% {
+    margin-left: 300px;
+    margin-top: 40px;
+    opacity: 0;
+  }
+
+  66%{
+    margin-left: 300px;
+    margin-top: 40px;
+    opacity: 0;
+  }
+  95%{
+    opacity: 1;
+  }
+  100% {
+    margin-left: 444px;
+    margin-top: -15px;
+    opacity: 0;
   }
 }

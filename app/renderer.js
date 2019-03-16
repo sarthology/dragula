@@ -23,6 +23,7 @@ const message = document.getElementById('message');
 const main = document.getElementById('main');
 const welcome = document.querySelector('.welcome');
 const how = document.querySelector('.how-to');
+const join = document.querySelector('.join');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
 
@@ -117,6 +118,10 @@ next.onclick = (event) =>{
 		shiftIndicator(activateState);
 		document.getElementById(activateState).classList.add('active');
 	}
+	else{
+		how.style = 'display:none';
+		join.style = 'display:grid';
+	}
 };
 
 // Event to start image dragging 
@@ -139,7 +144,7 @@ drag.onload= (event) => {
 
 //Onboarding animation
 window.onload =()=>{
-	setInterval(()=>{
+	setTimeout(()=>{
 		welcome.style ='display:none';
 		how.style='display:grid';
 	},7000);
