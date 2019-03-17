@@ -209,7 +209,7 @@ video {
 }
 
 .mail {
-  margin: 25px auto;
+  margin: 25px auto 9px auto;
   border: 1px solid #e3e3e3;
 }
 
@@ -294,6 +294,11 @@ video {
   margin-left: 250px;
   width: 130px;
   margin-top: 30px;
+}
+.spam{
+  text-align: center;
+  font-family: "OpenSans";
+  font-size: 11px;
 }
 .animation .bat{
   width: 70px;
