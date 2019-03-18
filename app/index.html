@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body>
+  <body>
     <!-- Main Section -->
     <div class="main" id="main">
+      <!-- Search Section -->
+      <div class="search">
+        <input type="text" id="keyword" />
+      </div>
 
-        <!-- Search Section -->
-        <div class="search">
-            <input type="text" id="keyword">
+      <!-- Image canvas -->
+      <img class="image-canvas" id="drag" />
+
+      <!-- Alert Section -->
+      <div class="alert" id="alert">
+        <!-- Image loader -->
+        <div class="loader" id="loader">
+          <img src="assets/refresh.png" alt="" />
         </div>
 
-        <!-- Image canvas -->
-        <img class="image-canvas" id="drag">
-
-        <!-- Alert Section -->
-        <div class="alert" id="alert">
-
-            <!-- Image loader -->
-            <div class="loader" id="loader">
-                <img src="assets/refresh.png" alt="">
-            </div>
-
-            <!-- Message Alerts -->
-            <div class="message" id="message">
-                <img src="assets/check.png" alt="">
-            </div>
+        <!-- Message Alerts -->
+        <div class="message" id="message">
+          <img src="assets/check.png" alt="" />
         </div>
+      </div>
 
-        <!-- toolbar section -->
-        <div class="toolbar">
-            <div class="reload" id="reload">
-                <img src="assets/refresh.png" alt="">
-            </div>
-            <div class="original" id="original">
-                <p>Original</p>
-            </div>
-            <div class="markdown" id="markdown">
-                <img src="assets/markdown.png" alt="">
-            </div>
-            <div class="download" id="download">
-                <img src="assets/download.png" alt="">
-            </div>
-            <div class="minimize" id="minimize">
-                <img src="assets/minimize.png" alt="">
-            </div>
+      <!-- toolbar section -->
+      <div class="toolbar">
+        <div class="reload" id="reload">
+          <img src="assets/refresh.png" alt="" />
         </div>
-
+        <div class="original" id="original">
+          <p>Original</p>
+        </div>
+        <div class="markdown" id="markdown">
+          <img src="assets/markdown.png" alt="" />
+        </div>
+        <div class="download" id="download">
+          <img src="assets/download.png" alt="" />
+        </div>
+        <div class="minimize" id="minimize">
+          <img src="assets/minimize.png" alt="" />
+        </div>
+      </div>
     </div>
 
     <!-- Button to enter
@@ -61,49 +57,69 @@
         <button>Dragula</button>
     </div> -->
 
-    <!-- onboard panel -->
-    <div class="onboarding">
-        <div class="welcome">
-            <div class="video">
-                <video autoplay muted id="myVideo">
-                    <source src="assets/logo.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="logo">
-                <p>Dragula <span>Beta</span></p>
-            </div>
+    <!-- setting -->
+    <div class="settings">
+        <div class="s-header">
+            <p>Settings</p>
         </div>
+        <div class="s-form">
 
-        <div class="how-to">
-            <h1>How to use Dragula?</h1>
-            <img src="assets/use.png" alt="">
-            <div class="help">
-                <p id="s1" class="active">Reload the new image</p>
-                <p id="s2">See the original image</p>
-                <p id="s3">Copy the link of the image</p>
-                <p id="s4">Download the image</p>
-                <p id="s5">Minimize the window</p>
-                <button class="next">Next</button>
-            </div>
-            <span class="indicator"></span>
         </div>
-
-        <div class="join">
-            <div class="animation">
-                <img class="vamp" src="assets/vampire.png">
-                <img class="castle" src="assets/castle.png" alt="">
-                <img class="bat" src="assets/bat.gif" alt="">
-            </div>
-            <h1>🦇 Don't let Dargula Fly away 🦇 </h1>
-            <h2>🎉 Subcribe to preorder list now to get Discounts 🎉 </h2>
-            <div class="mail">
-                <input type="text" placeholder="Add your email">
-                <button>Subscribe</button>
-            </div>
-            <span class="spam">Don't worry, A dragula won't send you spams</span>
+        <div class="s-footer">
+            <button class="save">Save</button>
         </div>
     </div>
-    <script src="renderer.js"></script>
-</body>
+    <!-- onboard panel -->
+    <div class="onboarding">
+      <div class="welcome">
+        <div class="video">
+          <video autoplay muted id="myVideo">
+            <source src="assets/logo.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="logo">
+          <p>Dragula <span>Beta</span></p>
+        </div>
+      </div>
 
+      <div class="how-to">
+        <h1>How to use Dragula?</h1>
+        <img src="assets/use.png" alt="" />
+        <div class="help">
+          <p id="s1" class="active">Reload the new image</p>
+          <p id="s2">See the original image</p>
+          <p id="s3">Copy the link of the image</p>
+          <p id="s4">Download the image</p>
+          <p id="s5">Minimize the window</p>
+          <button class="next">Next</button>
+        </div>
+        <span class="indicator"></span>
+      </div>
+
+      <div class="join">
+        <div class="animation">
+          <img class="vamp" src="assets/vampire.png" />
+          <img class="castle" src="assets/castle.png" alt="" />
+          <img class="bat" src="assets/bat.gif" alt="" />
+        </div>
+        <h1>🦇 Don't let Dargula Fly away 🦇</h1>
+        <h2>🎉 Subcribe to preorder list now to get Discounts 🎉</h2>
+        <div class="mail">
+          <input type="text" placeholder="Add your email" />
+          <button id="subcribe">Subscribe</button>
+        </div>
+        <span class="spam">Don't worry, A dragula won't send you spams</span>
+      </div>
+
+      <div class="thanks">
+        <div class="animation">
+          <img class="batc" src="assets/bat.gif" alt="" />
+          <img class="cage" src="assets/cage.png" />
+        </div>
+        <h1 class="got-the">🎊 Awesome you got the Dragula 🎊</h1>
+        <h1>Thanks for subscribing</h1>
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
 </html>

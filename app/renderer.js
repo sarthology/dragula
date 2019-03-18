@@ -24,8 +24,12 @@ const main = document.getElementById('main');
 const welcome = document.querySelector('.welcome');
 const how = document.querySelector('.how-to');
 const join = document.querySelector('.join');
+const thanks = document.querySelector('.thanks');
+const settings = document.querySelector('.settings');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
+const subcribe = document.getElementById('subcribe');
+
 
 
 
@@ -124,6 +128,15 @@ next.onclick = (event) =>{
 	}
 };
 
+subcribe.onclick = (event)=>{
+	event.preventDefault();
+	join.style ='display:none';
+	thanks.style ='display:grid';
+	setTimeout(()=>{
+		thanks.style ='display:none';
+		settings.style='display:grid';
+	},3500);
+};
 // Event to start image dragging 
 drag.ondragstart = (event) => {
 	event.preventDefault();

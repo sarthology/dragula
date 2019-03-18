@@ -171,7 +171,9 @@ video {
 
 .window,
 .slide,
-.join {
+.join,
+.thanks,
+.settings {
   position: absolute;
 }
 
@@ -183,6 +185,7 @@ video {
 }
 
 .how-to h1,
+.thanks h1,
 .join h1,
 .join h2,
 .join h3{
@@ -194,7 +197,9 @@ video {
 }
 
 .join,
-.how-to {
+.how-to,
+.thanks,
+.settings {
   display: none;
   width: 100%;
 }
@@ -307,6 +312,46 @@ video {
   margin-top: 40px;
   opacity: 0;
   animation: moveBat 9s linear infinite;
+}
+.cage{
+  width: 160px;
+  position: absolute;
+}
+.batc{
+  position: absolute;
+  width: 90px;
+  margin: 40px 40px;
+  z-index: 0
+}
+.thanks .animation{
+  margin: 25px 160px;
+}
+.thanks .got-the{
+  margin-top: 150px;
+  font-size: 27px;
+}
+.thanks{
+  animation: fadeOut 1s 2s linear forwards;
+}
+.save{
+  float: right;
+  background: #6ac76a;
+  color: white;
+  padding: 6px 16px;
+  font-size: 14px;
+  margin: 8px 20px;
+}
+.settings{
+  grid-template-rows: 1fr 6fr 1fr;
+  height: 100%;
+}
+.s-footer{
+  border-top: 1px solid #e3e3e3;
+}
+.s-header{
+  border-bottom: 1px solid #e3e3e3;
+  font-family: "OpenSans";
+  padding: 0px 20px;
 }
 @-moz-keyframes spin {
   100% {
