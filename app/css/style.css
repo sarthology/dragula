@@ -195,7 +195,9 @@ video {
   text-align: center;
   padding-top: 15px;
 }
-
+#enter {
+  display: none;
+}
 .join,
 .how-to,
 .thanks,
