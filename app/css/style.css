@@ -355,6 +355,31 @@ video {
   font-family: "OpenSans";
   padding: 0px 20px;
 }
+.s-form{
+  font-family: "OpenSans";
+  padding: 25px;
+}
+.setting{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-top: 10px;
+}
+.label{
+  font-weight: 100;
+}    
+.label p{
+  margin:0;
+}
+.option{
+  font-size: 12px;
+  padding: 3px;
+}
+.option img{
+  width: 50px;
+}
+.option input[type="radio"]:checked+label {
+  color:black;
+}
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);

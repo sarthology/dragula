@@ -54,20 +54,58 @@
 
     <!-- Button to enter -->
     <div id="enter">
-        <button>Dragula</button>
+      <button>Dragula</button>
     </div>
 
     <!-- setting -->
     <div class="settings">
-        <div class="s-header">
-            <p>Settings</p>
+      <div class="s-header">
+        <p>Settings</p>
+      </div>
+      <div class="s-form">
+        <div class="setting">
+          <div class="label">
+            <p>Position :</p>
+          </div>
+          <div class="option">
+            <input type="radio" name="position" id="topRight" />
+            <label for="topRight">Top Right</label>
+            <input type="radio" name="position" id="topLeft" />
+            <label for="topLeft">Top Left</label>
+            <input type="radio" name="position" id="bottomRight" />
+            <label for="bottomRight">Bottom Right</label>
+            <input type="radio" name="position" id="bottomLeft" />
+            <label for="bottomLeft">Bottom Left</label>
+          </div>
         </div>
-        <div class="s-form">
-
+        <div class="setting">
+          <div class="label">
+            <p>Link :</p>
+          </div>
+          <div class="option">
+            <input type="radio" name="link" id="normal" />
+            <label for="normal">Normal</label>
+            <input type="radio" name="link" id="markdown" />
+            <label for="markdown">Markdown</label>
+          </div>
         </div>
-        <div class="s-footer">
-            <button class="save">Save</button>
+        <div class="setting">
+          <div class="label">
+            <p>Qaulity :</p>
+          </div>
+          <div class="option">
+            <input type="radio" name="quality" id="low"/>
+            <label for="">Low</label>
+            <input type="radio" name="quality" id="medium" />
+            <label for="medium">Medium</label>
+            <input type="radio" name="quality" id="high" />
+            <label for="high">High</label>
+          </div>
         </div>
+      </div>
+      <div class="s-footer">
+        <button class="save">Save</button>
+      </div>
     </div>
     <!-- onboard panel -->
     <div class="onboarding">
