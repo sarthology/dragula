@@ -2,17 +2,19 @@
 
 // Dependencies
 const { ipcRenderer } = require('electron');
+const Store = require('electron-store');
 
 // Module imports
 const unsplash = require('./util/unsplash');
 const canvas = require('./util/canvas');
 const imgur = require('./util/imgur'); 
+const store = new Store();
 
 //Variables for Dom references
 const enter = document.getElementById('enter');
 const reload = document.getElementById('reload');
 const keyword = document.getElementById('keyword');
-const drag = document.getElementById('drag');
+const drag = document.getElementById('drag');      
 const minimize = document.getElementById('minimize');
 const download = document.getElementById('download');
 const markdown = document.getElementById('markdown');
@@ -173,6 +175,9 @@ window.onload =()=>{
 		how.style='display:grid';
 	},7000);
 };
+
+
+
 
 // Function to fetch image from unsplash
 const loadImage = (keyword)=>{

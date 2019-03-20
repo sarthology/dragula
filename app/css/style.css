@@ -357,28 +357,50 @@ video {
 }
 .s-form{
   font-family: "OpenSans";
-  padding: 25px;
-}
-.setting{
   display: grid;
   grid-template-columns: 1fr 5fr;
-  margin-top: 10px;
 }
 .label{
-  font-weight: 100;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 15px;
 }    
 .label p{
   margin:0;
+  padding: 8px 5px;
 }
 .option{
   font-size: 12px;
   padding: 3px;
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr 7fr;
+  grid-template-rows: 1fr 2fr;
 }
 .option img{
-  width: 50px;
+  width: 100px;
+  margin: 5px;
 }
 .option input[type="radio"]:checked+label {
   color:black;
+}
+.tab {
+  border-bottom: 1px solid #e3e3e3;
+  cursor: pointer;
+}
+.tab p {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+.setting-nav{
+  border-right: 1px solid #e3e3e3;
+}
+.setting{
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+.setting input{
+  margin: 12px;
 }
 @-moz-keyframes spin {
   100% {
