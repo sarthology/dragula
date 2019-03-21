@@ -4,9 +4,12 @@
 const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
 const { download } = require('electron-dl');
 var Positioner = require('electron-positioner');
+const Store = require('electron-store');
+
 
 // Native imports
 const fs = require('fs');
+const store = new Store();
 
 // Global Variables
 let win, positioner;
@@ -58,7 +61,7 @@ ipcMain.on('open', () => {
 		width: 300,
 		height: 200,
 	});
-	positioner.move('bottomRight');
+	setPosition();
 });
 
 // Function to resize window when main window closes
@@ -67,8 +70,17 @@ ipcMain.on('close', () => {
 		width: 100,
 		height: 50,
 	});
-	positioner.move('bottomRight');
+	setPosition();
 });
+
+let setPosition = ()=>{
+	if(store.get('settings')){
+		positioner.move(store.get('settings.position'));		
+	}
+	else{
+		positioner.move('bottemRight');		
+	}
+};
 
 // App ready event
 app.on('ready', createWindow);

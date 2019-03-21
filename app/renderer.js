@@ -56,6 +56,8 @@ save.onclick = (event) =>{
 	settings.style = 'display:none';
 	enter.style = 'display:block';
 
+	getSettings();
+
 	ipcRenderer.send('close');
 };
 
@@ -172,7 +174,13 @@ drag.onload= (event) => {
 window.onload =()=>{
 	setTimeout(()=>{
 		welcome.style ='display:none';
-		how.style='display:grid';
+		if(store.get('settings.onboarded')){
+			enter.style = 'display:block';
+			ipcRenderer.send('close');
+		}
+		else{
+			how.style='display:grid';
+		}
 	},7000);
 };
 
@@ -226,4 +234,12 @@ const shiftIndicator =(state)=>{
 	else if(state==='s5'){
 		indicator.style = 'margin-top: 230px;margin-left: 365px;';
 	}
+};
+
+const getSettings =()=>{
+	let settings = {
+		'position':document.querySelector('input[name="position"]:checked').value,
+		'onboarded':true
+	};
+	store.set('settings', settings);
 };
