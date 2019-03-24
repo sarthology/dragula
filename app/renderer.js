@@ -28,6 +28,7 @@ const how = document.querySelector('.how-to');
 const join = document.querySelector('.join');
 const save = document.querySelector('.save');
 const thanks = document.querySelector('.thanks');
+const search = document.querySelector('.search');
 const settings = document.querySelector('.settings');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
@@ -46,7 +47,7 @@ enter.onclick = (event) => {
 
 	main.style = 'display:inline-flex;';
 	enter.style = 'display:none';
-
+	setTimeout(()=>{search.classList.add('searchH');},1000);
 	ipcRenderer.send('open');
 };
 
@@ -80,6 +81,7 @@ minimize.onclick = (event) => {
 	event.preventDefault();
 	main.style = 'display:none';
 	enter.style = 'display:block';
+	search.classList.remove('searchH');
 	ipcRenderer.send('close');
 };
 

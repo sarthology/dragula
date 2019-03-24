@@ -96,11 +96,11 @@ input:focus {
   transition: opacity 1s;
 }
 
-.search:hover input#keyword {
+.searchH:hover input#keyword {
   opacity: 1;
 }
 
-.search:hover~#drag {
+.searchH:hover~#drag {
   filter: blur(2px);
   opacity: 0.4;
 }
