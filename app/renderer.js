@@ -30,6 +30,7 @@ const save = document.querySelector('.save');
 const thanks = document.querySelector('.thanks');
 const search = document.querySelector('.search');
 const settings = document.querySelector('.settings');
+const setting = document.querySelector('#setting');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
@@ -74,6 +75,15 @@ reload.onclick = (event) => {
 	event.preventDefault();
 
 	loadImage(keyword.value);
+};
+
+setting.onclick = (event) => {
+	event.preventDefault();
+
+	settings.style = 'display:grid';
+	main.style = 'display:none';
+
+	ipcRenderer.send('setting');	
 };
 
 // Event to minimize main window 

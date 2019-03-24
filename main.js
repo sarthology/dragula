@@ -73,6 +73,14 @@ ipcMain.on('close', () => {
 	setPosition();
 });
 
+ipcMain.on('setting', () => {
+	win.setBounds({
+		width: 500,
+		height: 400
+	});
+	positioner.move('center');
+});
+
 let setPosition = ()=>{
 	if(store.get('settings')){
 		positioner.move(store.get('settings.position'));		

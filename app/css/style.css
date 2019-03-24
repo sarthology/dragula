@@ -59,7 +59,8 @@ input:focus {
 .search {
   position: absolute;
   width: 100%;
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
   cursor: pointer;
   z-index: 10;
 }
@@ -83,7 +84,8 @@ input:focus {
 }
 
 #keyword {
-  margin: 10px auto;
+  margin: 9px 65px;
+  width: 60%;
   font-family: sans-serif;
   padding: 5px;
   border: none;
@@ -95,8 +97,18 @@ input:focus {
   font-weight: bold;
   transition: opacity 1s;
 }
+#setting{
+  width: 16px;
+  margin: 15px 0px 0px 23px;
+  opacity: 0;
+  transition: opacity 1s;
+  cursor: pointer;
+}
 
 .searchH:hover input#keyword {
+  opacity: 1;
+}
+.searchH:hover #setting {
   opacity: 1;
 }
 
