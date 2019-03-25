@@ -30,6 +30,10 @@ const save = document.querySelector('.save');
 const thanks = document.querySelector('.thanks');
 const search = document.querySelector('.search');
 const settings = document.querySelector('.settings');
+const display = document.querySelector('.display');
+const displayTab = document.querySelector('.displayTab');
+const general = document.querySelector('.general');
+const generalTab = document.querySelector('.generalTab');
 const setting = document.querySelector('#setting');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
@@ -197,7 +201,15 @@ window.onload =()=>{
 };
 
 
+generalTab.onclick = ()=>{
+	display.style = 'display:none';
+	general.style = 'display:grid;';
+};
 
+displayTab.onclick = ()=>{
+	display.style = 'display:grid';
+	general.style = 'display:none';
+};
 
 // Function to fetch image from unsplash
 const loadImage = (keyword)=>{
@@ -251,6 +263,7 @@ const shiftIndicator =(state)=>{
 const getSettings =()=>{
 	let settings = {
 		'position':document.querySelector('input[name="position"]:checked').value,
+		'quality':document.querySelector('input[name="quality"]:checked').value,
 		'onboarded':true
 	};
 	store.set('settings', settings);

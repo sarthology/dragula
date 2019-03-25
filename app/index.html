@@ -66,10 +66,10 @@
     </div>
     <div class="s-form">
       <div class="setting-nav">
-        <div class="tab">
+        <div class="tab displayTab">
           <p>Display</p>
         </div>
-        <div class="tab">
+        <div class="tab generalTab">
           <p>General</p>
         </div>
         <div class="tab">
@@ -79,12 +79,12 @@
           <p>About</p>
         </div>
       </div>
-      <div class="setting">
+      <div class="display">
         <div class="label">
           <p>Position :</p>
         </div>
         <div class="option">
-          <input type="radio" name="position"  value="topLeft" />
+          <input type="radio" name="position" value="topLeft" />
           <img src="assets/boxTL.png">
           <input type="radio" name="position" value="topRight" />
           <img src="assets/boxTR.png">
@@ -94,45 +94,28 @@
           <img src="assets/boxBR.png">
         </div>
       </div>
-      <!-- <div class="setting">
-          <div class="label">
-            <p>Position :</p>
-          </div>
-          <div class="option">
-            <input type="radio" name="position" checked id="topRight" />
-            <label for="topRight">Top Right</label>
-            <input type="radio" name="position" id="topLeft" />
-            <label for="topLeft">Top Left</label>
-            <input type="radio" name="position" id="bottomRight" />
-            <label for="bottomRight">Bottom Right</label>
-            <input type="radio" name="position" id="bottomLeft" />
-            <label for="bottomLeft">Bottom Left</label>
-          </div>
+      <div class="general">
+        <div class="label">
+          <p>Link :</p>
         </div>
-        <div class="setting">
-          <div class="label">
-            <p>Link :</p>
-          </div>
-          <div class="option">
-            <input type="radio" name="link" id="normal" />
-            <label for="normal">Normal</label>
-            <input type="radio" name="link" checked id="markdown" />
-            <label for="markdown">Markdown</label>
-          </div>
+        <div class="option">
+          <input type="radio" name="link" id="normal" />
+          <label for="normal">Normal</label>
+          <input type="radio" name="link" checked id="markdown" />
+          <label for="markdown">Markdown</label>
         </div>
-        <div class="setting">
-          <div class="label">
-            <p>Qaulity :</p>
-          </div>
-          <div class="option">
-            <input type="radio" name="quality" id="low"/>
-            <label for="">Low</label>
-            <input type="radio" name="quality" id="medium" />
-            <label for="medium">Medium</label>
-            <input type="radio" name="quality" id="high" checked />
-            <label for="high">High</label>
-          </div>
-        </div> -->
+        <div class="label">
+          <p>Qaulity :</p>
+        </div>
+        <div class="option">
+          <input type="radio" name="quality" value="low" />
+          <label for="">Low</label>
+          <input type="radio" name="quality" value="medium" />
+          <label for="medium">Medium</label>
+          <input type="radio" name="quality" value="high" checked />
+          <label for="high">High</label>
+        </div>
+      </div>
     </div>
     <div class="s-footer">
       <button class="save">Save</button>

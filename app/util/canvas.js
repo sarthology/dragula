@@ -1,5 +1,8 @@
 'use strict';
 
+const Store = require('electron-store');
+const store = new Store();
+
 /**
  * This function gives DataURL of image passed.
  * @param {object} img object to be converted
@@ -10,9 +13,9 @@ const getDataUrl = (img) => {
 	var ctx = canvas.getContext('2d');
 
 
-	canvas.width = img.naturalWidth;
-	canvas.height = img.naturalHeight;
-	ctx.drawImage(img, 0, 0);
+	canvas.width = changeDimension(img.naturalWidth);
+	canvas.height = changeDimension(img.naturalHeight);
+	ctx.drawImage(img, 0, 0,canvas.width,canvas.height);
 
 	return canvas.toDataURL();
 };
@@ -31,8 +34,8 @@ const getOriginalDataUrl = (img) => {
 		newWidth,
 		newHeight;
 
-	canvas.width = 2400;
-	canvas.height = 1600;
+	canvas.width = changeDimension(2400);
+	canvas.height = changeDimension(1600);
 	aspectRadio = img.naturalHeight / img.naturalWidth;
     
 	// For horizontal image
@@ -50,9 +53,20 @@ const getOriginalDataUrl = (img) => {
 		yStart = -(newHeight - 1600) / 2;
 	}
     
-	ctx.drawImage(img, xStart, yStart, newWidth, newHeight);
+	ctx.drawImage(img, xStart, yStart, changeDimension(newWidth), changeDimension(newHeight));
     
 	return canvas.toDataURL();
 };
 
+const changeDimension =(dimension)=>{
+	if(store.get('settings.quality')==='low'){
+		return (dimension*30)/100;
+	}
+	else if(store.get('settings.quality')==='medium'){
+		return (dimension*50)/100;
+	}
+	else{
+		return dimension;
+	}
+};
 module.exports = { getDataUrl, getOriginalDataUrl };

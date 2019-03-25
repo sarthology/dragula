@@ -64,7 +64,6 @@ input:focus {
   cursor: pointer;
   z-index: 10;
 }
-
 .reload img,
 .minimize img,
 .download img,
@@ -381,7 +380,7 @@ video {
   margin:0;
   padding: 8px 5px;
 }
-.option{
+.display .option{
   font-size: 12px;
   padding: 3px;
   display: grid;
@@ -400,19 +399,32 @@ video {
   cursor: pointer;
 }
 .tab p {
-  margin-left: 6px;
+  margin-left: 10px;
   margin-right: 6px;
 }
 .setting-nav{
   border-right: 1px solid #e3e3e3;
 }
-.setting{
+.display{
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 4fr;
 }
-.setting input{
+.display input{
   margin: 12px;
+}
+.general{
+  padding: 10px;
+  display: none;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 4fr;
+}
+.general .option{
+  font-size: 12px;
+  padding: 10px;
+}
+.general label{
+  margin-right: 10px;
 }
 @-moz-keyframes spin {
   100% {
