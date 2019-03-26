@@ -83,7 +83,7 @@ reload.onclick = (event) => {
 
 setting.onclick = (event) => {
 	event.preventDefault();
-
+	loadSettings();
 	settings.style = 'display:grid';
 	main.style = 'display:none';
 
@@ -268,3 +268,16 @@ const getSettings =()=>{
 	};
 	store.set('settings', settings);
 };
+
+const loadSettings =()=>{
+	let settings = store.get('settings');
+	if(settings){
+		document.querySelector(`input[value="${settings.position}"]`).checked=true;
+		document.querySelector(`input[value="${settings.quality}"]`).checked=true;
+	}
+	else{
+		document.querySelector('input[value="bottemRight"]').checked=true;
+		document.querySelector('input[value="high"]').checked=true;
+	}
+};
+
