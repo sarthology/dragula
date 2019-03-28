@@ -51,8 +51,13 @@ ipcMain.on('download', (event,args) => {
 });
 
 // Function to copy markdown code to clipboard
-ipcMain.on('markdown', (event,args) => {
-	clipboard.writeText('![alt data]('+ args.url+')');
+ipcMain.on('link', (event,args) => {
+	if(store.get('settings.link')==='normal'){
+		clipboard.writeText(args.url);
+	}
+	else{
+		clipboard.writeText('![alt data]('+ args.url+')');
+	}
 });
 
 // Function to resize window when main window opens

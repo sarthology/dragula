@@ -53,6 +53,7 @@ enter.onclick = (event) => {
 	main.style = 'display:inline-flex;';
 	enter.style = 'display:none';
 	setTimeout(()=>{search.classList.add('searchH');},1000);
+	document.querySelector('.markdown img').setAttribute('src','assets/'+store.get('settings.link')+'.png');
 	ipcRenderer.send('open');
 };
 
@@ -126,7 +127,7 @@ markdown.onclick = (event) => {
 		alert.setAttribute('style','display:none;');
 		drag.classList.remove('image-blur');
 		const data = JSON.parse(body).data;
-		ipcRenderer.send('markdown', {
+		ipcRenderer.send('link', {
 			'url': data.link
 		});
 		markdownAnimate();
@@ -264,6 +265,7 @@ const getSettings =()=>{
 	let settings = {
 		'position':document.querySelector('input[name="position"]:checked').value,
 		'quality':document.querySelector('input[name="quality"]:checked').value,
+		'link':document.querySelector('input[name="link"]:checked').value,
 		'onboarded':true
 	};
 	store.set('settings', settings);
@@ -274,10 +276,11 @@ const loadSettings =()=>{
 	if(settings){
 		document.querySelector(`input[value="${settings.position}"]`).checked=true;
 		document.querySelector(`input[value="${settings.quality}"]`).checked=true;
+		document.querySelector(`input[value="${settings.link}"]`).checked=true;
 	}
 	else{
 		document.querySelector('input[value="bottemRight"]').checked=true;
 		document.querySelector('input[value="high"]').checked=true;
+		document.querySelector('input[value="markdown"]').checked=true;
 	}
 };
-
