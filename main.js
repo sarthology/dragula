@@ -97,3 +97,8 @@ let setPosition = ()=>{
 
 // App ready event
 app.on('ready', createWindow);
+
+// eslint-disable-next-line no-unused-vars
+ipcMain.on('app_quit', (event, info) => {
+	app.quit();
+});

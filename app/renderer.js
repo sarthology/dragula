@@ -1,20 +1,23 @@
 'use strict';
 
 // Dependencies
-const { ipcRenderer } = require('electron');
+const {
+	ipcRenderer
+} = require('electron');
 const Store = require('electron-store');
 
 // Module imports
 const unsplash = require('./util/unsplash');
 const canvas = require('./util/canvas');
-const imgur = require('./util/imgur'); 
+const imgur = require('./util/imgur');
+const api = require('./util/subscribe');
 const store = new Store();
 
 //Variables for Dom references
 const enter = document.getElementById('enter');
 const reload = document.getElementById('reload');
 const keyword = document.getElementById('keyword');
-const drag = document.getElementById('drag');      
+const drag = document.getElementById('drag');
 const minimize = document.getElementById('minimize');
 const download = document.getElementById('download');
 const markdown = document.getElementById('markdown');
@@ -40,24 +43,23 @@ const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
 
 
-
-
 // Event to open main window
 enter.onclick = (event) => {
 	event.preventDefault();
 
-	if(!drag.getAttribute('src')){
+	if (!drag.getAttribute('src')) {
 		loadImage();
 	}
 
 	main.style = 'display:inline-flex;';
 	enter.style = 'display:none';
-	setTimeout(()=>{search.classList.add('searchH');},1000);
-	document.querySelector('.markdown img').setAttribute('src','assets/'+store.get('settings.link')+'.png');
+	setTimeout(() => {
+		search.classList.add('searchH');
+	}, 1000);
 	ipcRenderer.send('open');
 };
 
-save.onclick = (event) =>{
+save.onclick = (event) => {
 	event.preventDefault();
 
 	settings.style = 'display:none';
@@ -84,11 +86,11 @@ reload.onclick = (event) => {
 
 setting.onclick = (event) => {
 	event.preventDefault();
-	loadSettings();
+
 	settings.style = 'display:grid';
 	main.style = 'display:none';
 
-	ipcRenderer.send('setting');	
+	ipcRenderer.send('setting');
 };
 
 // Event to minimize main window 
@@ -113,21 +115,20 @@ download.onclick = (event) => {
 markdown.onclick = (event) => {
 	event.preventDefault();
 	let img;
-	alert.setAttribute('style','display:inline-flex;');
-	drag.classList.add('image-blur'); 
+	alert.setAttribute('style', 'display:inline-flex;');
+	drag.classList.add('image-blur');
 
-	if(document.getElementsByClassName('image-original')[0]){
+	if (document.getElementsByClassName('image-original')[0]) {
 		img = canvas.getDataUrl(drag);
-	}
-	else{
+	} else {
 		img = canvas.getOriginalDataUrl(drag);
 	}
 
-	imgur.unploadImage(img).then((body)=>{
-		alert.setAttribute('style','display:none;');
+	imgur.unploadImage(img).then((body) => {
+		alert.setAttribute('style', 'display:none;');
 		drag.classList.remove('image-blur');
 		const data = JSON.parse(body).data;
-		ipcRenderer.send('link', {
+		ipcRenderer.send('markdown', {
 			'url': data.link
 		});
 		markdownAnimate();
@@ -141,146 +142,146 @@ original.onclick = (event) => {
 	drag.classList.toggle('image-canvas');
 };
 
-next.onclick = (event) =>{
+next.onclick = (event) => {
 	event.preventDefault();
-
 	const active = document.querySelector('.active');
 	let currentState = active.getAttribute('id');
 
-	if(currentState!='s5'){
+	if (currentState != 's5') {
 		active.classList.remove('active');
 		let activateState = 's' + (Number(currentState.split('s')[1]) + 1);
 		shiftIndicator(activateState);
 		document.getElementById(activateState).classList.add('active');
-	}
-	else{
+	} else {
 		how.style = 'display:none';
 		join.style = 'display:grid';
 	}
 };
 
-subcribe.onclick = (event)=>{
+subcribe.onclick = (event) => {
 	event.preventDefault();
-	join.style ='display:none';
-	thanks.style ='display:grid';
-	setTimeout(()=>{
-		thanks.style ='display:none';
-		settings.style='display:grid';
-	},3500);
+	var emailInput = document.getElementById('email');
+	api.subscribe(emailInput.value).then(value => {
+		store.set('uid', JSON.parse(value).user._id);
+	});
+
+	join.style = 'display:none';
+	thanks.style = 'display:grid';
+	setTimeout(() => {
+		thanks.style = 'display:none';
+		settings.style = 'display:grid';
+	}, 3500);
 };
 
 // Event to start image dragging 
 drag.ondragstart = (event) => {
 	event.preventDefault();
-	if(document.getElementsByClassName('image-original')[0]){
+	if (document.getElementsByClassName('image-original')[0]) {
 		ipcRenderer.send('ondragstart', canvas.getDataUrl(event.currentTarget));
-	}
-	else{
+	} else {
 		ipcRenderer.send('ondragstart', canvas.getOriginalDataUrl(event.currentTarget));
 	}
 };
 
 // Event to check if image loaded
-drag.onload= (event) => {
+drag.onload = (event) => {
 	event.preventDefault();
-	alert.setAttribute('style','display:none;');
-	drag.classList.remove('image-blur'); 
+	alert.setAttribute('style', 'display:none;');
+	drag.classList.remove('image-blur');
 };
 
 //Onboarding animation
-window.onload =()=>{
-	setTimeout(()=>{
-		welcome.style ='display:none';
-		if(store.get('settings.onboarded')){
+window.onload = () => {
+	setTimeout(() => {
+		welcome.style = 'display:none';
+
+		if (store.get('settings.onboarded')) {
 			enter.style = 'display:block';
 			ipcRenderer.send('close');
+
+			// Update user active status
+			api.updateUser(store.get('uid'), 'active').then(value => {
+				console.log('User currently active ' + value);
+			});
+		} else {
+			how.style = 'display:grid';
 		}
-		else{
-			how.style='display:grid';
-		}
-	},7000);
+	}, 7000);
 };
 
 
-generalTab.onclick = ()=>{
+generalTab.onclick = () => {
 	display.style = 'display:none';
 	general.style = 'display:grid;';
 };
 
-displayTab.onclick = ()=>{
+displayTab.onclick = () => {
 	display.style = 'display:grid';
 	general.style = 'display:none';
 };
 
 // Function to fetch image from unsplash
-const loadImage = (keyword)=>{
+const loadImage = (keyword) => {
 
-	alert.setAttribute('style','display:inline-flex;');
-	drag.classList.add('image-blur'); 
+	alert.setAttribute('style', 'display:inline-flex;');
+	drag.classList.add('image-blur');
 
-	if(keyword){
+	if (keyword) {
 		unsplash.fetchFromKeyword(keyword).then((url) => {
 			drag.setAttribute('src', url);
 		});
-	}
-	else{
+	} else {
 		unsplash.fetchRandom().then((url) => {
-			drag.setAttribute('src',url);
+			drag.setAttribute('src', url);
 		});
 	}
 };
 
 // Function to do animation for markdown code successfully copied
-const markdownAnimate = ()=>{
+const markdownAnimate = () => {
 
-	alert.setAttribute('style','display:inline-flex;');
-	loader.setAttribute('style','display:none;');
-	message.setAttribute('style','display:block;');
-	drag.classList.add('image-blur'); 
-	
+	alert.setAttribute('style', 'display:inline-flex;');
+	loader.setAttribute('style', 'display:none;');
+	message.setAttribute('style', 'display:block;');
+	drag.classList.add('image-blur');
+
 	setTimeout(() => {
-		alert.setAttribute('style','display:none;');
-		loader.setAttribute('style','display:block;');
-		message.setAttribute('style','display:none;');
-		drag.classList.remove('image-blur'); 
+		alert.setAttribute('style', 'display:none;');
+		loader.setAttribute('style', 'display:block;');
+		message.setAttribute('style', 'display:none;');
+		drag.classList.remove('image-blur');
 	}, 2000);
 };
 
-const shiftIndicator =(state)=>{
-	if(state==='s2'){
+const shiftIndicator = (state) => {
+	if (state === 's2') {
 		indicator.style = 'margin-top: 230px;margin-left: 148px;';
-	}
-	else if(state==='s3'){
+	} else if (state === 's3') {
 		indicator.style = 'margin-top: 238px;margin-left: 293px;';
-	}
-	else if(state==='s4'){
+	} else if (state === 's4') {
 		indicator.style = 'margin-top: 238px;margin-left: 322px;';
-	}
-	else if(state==='s5'){
+	} else if (state === 's5') {
 		indicator.style = 'margin-top: 230px;margin-left: 365px;';
 	}
 };
 
-const getSettings =()=>{
+const getSettings = () => {
 	let settings = {
-		'position':document.querySelector('input[name="position"]:checked').value,
-		'quality':document.querySelector('input[name="quality"]:checked').value,
-		'link':document.querySelector('input[name="link"]:checked').value,
-		'onboarded':true
+		'position': document.querySelector('input[name="position"]:checked').value,
+		'quality': document.querySelector('input[name="quality"]:checked').value,
+		'onboarded': true
 	};
 	store.set('settings', settings);
 };
 
-const loadSettings =()=>{
-	let settings = store.get('settings');
-	if(settings){
-		document.querySelector(`input[value="${settings.position}"]`).checked=true;
-		document.querySelector(`input[value="${settings.quality}"]`).checked=true;
-		document.querySelector(`input[value="${settings.link}"]`).checked=true;
+window._saved = false;
+window.onbeforeunload = (e) => {
+	if (!window.saved) {
+		api.updateUser(store.get('uid'), 'inactive').then(() => {
+			window._saved = true;
+			ipcRenderer.send('app_quit');
+			window.onbeforeunload = null;
+		});
 	}
-	else{
-		document.querySelector('input[value="bottemRight"]').checked=true;
-		document.querySelector('input[value="high"]').checked=true;
-		document.querySelector('input[value="markdown"]').checked=true;
-	}
+	e.returnValue = false;
 };
