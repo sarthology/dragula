@@ -64,6 +64,7 @@ input:focus {
   cursor: pointer;
   z-index: 10;
 }
+
 .reload img,
 .minimize img,
 .download img,
@@ -96,7 +97,8 @@ input:focus {
   font-weight: bold;
   transition: opacity 1s;
 }
-#setting{
+
+#setting {
   width: 16px;
   margin: 15px 0px 0px 23px;
   opacity: 0;
@@ -107,6 +109,7 @@ input:focus {
 .searchH:hover input#keyword {
   opacity: 1;
 }
+
 .searchH:hover #setting {
   opacity: 1;
 }
@@ -199,16 +202,18 @@ video {
 .thanks h1,
 .join h1,
 .join h2,
-.join h3{
+.join h3 {
   font-family: 'OpenSans', sans-serif;
   margin: 0;
   font-weight: 100;
   text-align: center;
   padding-top: 15px;
 }
+
 #enter {
   display: none;
 }
+
 .join,
 .how-to,
 .thanks,
@@ -249,12 +254,14 @@ video {
 
 .join h1 {
   font-size: 25px;
-  margin-top:180px;
+  margin-top: 180px;
 }
-.join h2{
+
+.join h2 {
   font-size: 17px;
 }
-.join img{
+
+.join img {
   margin: 0 auto;
 }
 
@@ -299,26 +306,31 @@ video {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.animation img{
+
+.animation img {
   position: absolute;
   margin-bottom: 20px;
 }
-.animation .vamp{
+
+.animation .vamp {
   width: 60px;
   margin-top: 100px;
   animation: moveVamp 9s linear infinite;
 }
-.animation .castle{
+
+.animation .castle {
   margin-left: 250px;
   width: 130px;
   margin-top: 30px;
 }
-.spam{
+
+.spam {
   text-align: center;
   font-family: "OpenSans";
   font-size: 11px;
 }
-.animation .bat{
+
+.animation .bat {
   width: 70px;
   transform: rotateY(180deg);
   margin-left: 300px;
@@ -326,27 +338,33 @@ video {
   opacity: 0;
   animation: moveBat 9s linear infinite;
 }
-.cage{
+
+.cage {
   width: 160px;
   position: absolute;
 }
-.batc{
+
+.batc {
   position: absolute;
   width: 90px;
   margin: 40px 40px;
   z-index: 0
 }
-.thanks .animation{
+
+.thanks .animation {
   margin: 25px 160px;
 }
-.thanks .got-the{
+
+.thanks .got-the {
   margin-top: 150px;
   font-size: 27px;
 }
-.thanks{
+
+.thanks {
   animation: fadeOut 1s 2s linear forwards;
 }
-.save{
+
+.save {
   float: right;
   background: #6ac76a;
   color: white;
@@ -354,77 +372,135 @@ video {
   font-size: 14px;
   margin: 8px 20px;
 }
-.settings{
+
+.settings {
   grid-template-rows: 1fr 6fr 1fr;
   height: 100%;
 }
-.s-footer{
+
+.s-footer {
   border-top: 1px solid #e3e3e3;
 }
-.s-header{
+
+.s-header {
   border-bottom: 1px solid #e3e3e3;
   font-family: "OpenSans";
   padding: 0px 20px;
+  display: grid;
+  grid-template-columns: 10fr 1fr;
 }
-.s-form{
+
+.s-form {
   font-family: "OpenSans";
   display: grid;
   grid-template-columns: 1fr 5fr;
 }
-.label{
+
+.label {
   font-weight: 700;
   margin-bottom: 12px;
   font-size: 15px;
-}    
-.label p{
-  margin:0;
+}
+
+.label p {
+  margin: 0;
   padding: 8px 5px;
 }
-.display .option{
+.close{
+  text-align: right;
+  cursor: pointer;
+  font-weight: 800;
+}
+.display .option {
   font-size: 12px;
   padding: 3px;
   display: grid;
   grid-template-columns: 2fr 6fr 2fr 7fr;
   grid-template-rows: 1fr 2fr;
 }
-.option img{
+
+.option img {
   width: 100px;
   margin: 5px;
 }
+
 .option input[type="radio"]:checked+label {
-  color:black;
+  color: black;
 }
+
 .tab {
   border-bottom: 1px solid #e3e3e3;
   cursor: pointer;
 }
+
 .tab p {
   margin-left: 10px;
   margin-right: 6px;
 }
-.setting-nav{
+
+.setting-nav {
   border-right: 1px solid #e3e3e3;
 }
-.display{
+
+.display {
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 4fr;
 }
-.display input{
+
+.display input {
   margin: 12px;
 }
-.general{
+
+.general {
   padding: 10px;
   display: none;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 4fr;
 }
-.general .option{
+
+.general .option {
   font-size: 12px;
   padding: 10px;
 }
-.general label{
+
+.general label {
   margin-right: 10px;
+}
+
+.about {
+  display: none;
+  font-size: 12px;
+  padding: 10px 15px;
+}
+
+.about p {
+  margin: 0;
+  text-align: center;
+}
+
+.about img {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.donation p {
+  font-weight: 800;
+  font-size: 15px;
+  margin: 3px 0px;
+}
+
+.donation img {
+  width: 28px;
+}
+
+.donation {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  width: 100px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 4px 7px
 }
 @-moz-keyframes spin {
   100% {
@@ -513,18 +589,21 @@ video {
 
 @keyframes moveVamp {
   0% {
-    margin-left:-40px;
+    margin-left: -40px;
     opacity: 1;
   }
-  40%{
+
+  40% {
     opacity: 1;
   }
-  66%{
-    margin-left:300px;
+
+  66% {
+    margin-left: 300px;
     opacity: 0;
   }
+
   100% {
-   opacity: 0;
+    opacity: 0;
   }
 }
 
@@ -535,14 +614,16 @@ video {
     opacity: 0;
   }
 
-  66%{
+  66% {
     margin-left: 300px;
     margin-top: 40px;
     opacity: 0;
   }
-  95%{
+
+  95% {
     opacity: 1;
   }
+
   100% {
     margin-left: 444px;
     margin-top: -15px;

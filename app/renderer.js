@@ -30,6 +30,7 @@ const welcome = document.querySelector('.welcome');
 const how = document.querySelector('.how-to');
 const join = document.querySelector('.join');
 const save = document.querySelector('.save');
+const close = document.querySelector('.close');
 const thanks = document.querySelector('.thanks');
 const search = document.querySelector('.search');
 const settings = document.querySelector('.settings');
@@ -37,6 +38,10 @@ const display = document.querySelector('.display');
 const displayTab = document.querySelector('.displayTab');
 const general = document.querySelector('.general');
 const generalTab = document.querySelector('.generalTab');
+const help = document.querySelector('.help');
+const helpTab = document.querySelector('.helpTab');
+const about = document.querySelector('.about');
+const aboutTab = document.querySelector('.aboutTab');
 const setting = document.querySelector('#setting');
 const next = document.querySelector('.next');
 const indicator = document.querySelector('.indicator');
@@ -67,6 +72,15 @@ save.onclick = (event) =>{
 	enter.style = 'display:block';
 
 	getSettings();
+
+	ipcRenderer.send('close');
+};
+
+close.onclick = (event) => {
+	event.preventDefault();
+
+	settings.style = 'display:none';
+	enter.style = 'display:block';
 
 	ipcRenderer.send('close');
 };
@@ -156,8 +170,17 @@ next.onclick = (event) =>{
 		document.getElementById(activateState).classList.add('active');
 	}
 	else{
-		how.style = 'display:none';
-		join.style = 'display:grid';
+		if(store.get('settings.onboarded')){
+			how.style = 'display:none';
+			settings.style = 'display:grid';
+			active.classList.remove('active');
+			shiftIndicator('s1');
+			document.getElementById('s1').classList.add('active');
+		}
+		else{
+			how.style = 'display:none';
+			join.style = 'display:grid';
+		}
 	}
 };
 
@@ -216,11 +239,22 @@ window.onload = () => {
 
 generalTab.onclick = ()=>{
 	display.style = 'display:none';
+	about.style = 'display:none';
 	general.style = 'display:grid;';
 };
 
 displayTab.onclick = ()=>{
 	display.style = 'display:grid';
+	about.style = 'display:none';
+	general.style = 'display:none';
+};
+helpTab.onclick = ()=>{
+	how.style = 'display:grid';
+	settings.style = 'display:none';
+};
+aboutTab.onclick = ()=>{
+	about.style = 'display:grid';
+	display.style = 'display:none';
 	general.style = 'display:none';
 };
 
@@ -270,6 +304,9 @@ const shiftIndicator =(state)=>{
 	}
 	else if(state==='s5'){
 		indicator.style = 'margin-top: 230px;margin-left: 365px;';
+	}
+	else{
+		indicator.style = 'margin-top: 238px;margin-left: 136px;';
 	}
 };
 
