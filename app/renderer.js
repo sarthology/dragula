@@ -38,7 +38,6 @@ const display = document.querySelector('.display');
 const displayTab = document.querySelector('.displayTab');
 const general = document.querySelector('.general');
 const generalTab = document.querySelector('.generalTab');
-const help = document.querySelector('.help');
 const helpTab = document.querySelector('.helpTab');
 const about = document.querySelector('.about');
 const aboutTab = document.querySelector('.aboutTab');
@@ -81,6 +80,8 @@ close.onclick = (event) => {
 
 	settings.style = 'display:none';
 	enter.style = 'display:block';
+	
+	getSettings();
 
 	ipcRenderer.send('close');
 };
