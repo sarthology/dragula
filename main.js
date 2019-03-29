@@ -1,8 +1,9 @@
 'use strict';
 
 // Dependencies
-const { app, BrowserWindow, ipcMain, nativeImage, clipboard } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeImage, clipboard, dialog } = require('electron');
 const { download } = require('electron-dl');
+const {autoUpdater} = require('electron-updater');
 var Positioner = require('electron-positioner');
 const Store = require('electron-store');
 
@@ -28,6 +29,7 @@ function createWindow() {
 	});
 	positioner = new Positioner(win);
 	positioner.move('center');
+	autoUpdater.checkForUpdates();
 	// and load the index.html of the app.
 	win.loadFile('app/index.html');
 }
@@ -101,4 +103,20 @@ app.on('ready', createWindow);
 // eslint-disable-next-line no-unused-vars
 ipcMain.on('app_quit', (event, info) => {
 	app.quit();
+});
+
+const options = {
+	type: 'question',
+	buttons: ['Cancel', 'Update'],
+	defaultId: 2,
+	title: 'Updater',
+	message: 'Update your app to a new version now'
+};
+
+autoUpdater.on('update-downloaded', () => {
+	dialog.showMessageBox(null, options, (response) => {
+		if(response === 1){
+			autoUpdater.quitAndInstall();
+		}
+	});
 });

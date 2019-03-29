@@ -3,3 +3,5 @@
 node_modules/
 release-builds
 image.png
+electron-builder.yml
+dist

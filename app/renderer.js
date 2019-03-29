@@ -2,7 +2,8 @@
 
 // Dependencies
 const {
-	ipcRenderer
+	ipcRenderer,
+	shell
 } = require('electron');
 const Store = require('electron-store');
 
@@ -43,6 +44,8 @@ const about = document.querySelector('.about');
 const aboutTab = document.querySelector('.aboutTab');
 const setting = document.querySelector('#setting');
 const next = document.querySelector('.next');
+const twitter = document.querySelector('.twitter');
+const donation = document.querySelector('.donation');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
 
@@ -89,7 +92,9 @@ close.onclick = (event) => {
 // Event to search image by keyword 
 keyword.onkeydown = (event) => {
 	if (event.keyCode === 13) {
-		loadImage(event.currentTarget.value);
+		if(event.currentTarget.value){
+			loadImage(event.currentTarget.value);
+		}
 	}
 };
 
@@ -100,6 +105,19 @@ reload.onclick = (event) => {
 	loadImage(keyword.value);
 };
 
+donation.onclick = (event) =>{
+	event.preventDefault();
+
+	shell.openExternal('https://www.paypal.me/Sarthakit');	
+};
+twitter.onclick = (event) =>{
+	event.preventDefault();
+
+	shell.openExternal('https://twitter.com/_teamxenox');	
+};
+document.querySelector('.reset').onclick = ()=>{
+	store.set('settings',null);
+};
 setting.onclick = (event) => {
 	event.preventDefault();
 	loadSettings();
@@ -164,7 +182,7 @@ next.onclick = (event) =>{
 	const active = document.querySelector('.active');
 	let currentState = active.getAttribute('id');
 
-	if(currentState!='s5'){
+	if(currentState!='s7'){
 		active.classList.remove('active');
 		let activateState = 's' + (Number(currentState.split('s')[1]) + 1);
 		shiftIndicator(activateState);
@@ -305,6 +323,12 @@ const shiftIndicator =(state)=>{
 	}
 	else if(state==='s5'){
 		indicator.style = 'margin-top: 230px;margin-left: 365px;';
+	}
+	else if(state==='s6'){
+		indicator.style = 'margin-top: 108px;margin-left: 314px;';
+	}
+	else if(state==='s7'){
+		indicator.style = 'margin-top: 90px;margin-left: 364px;';
 	}
 	else{
 		indicator.style = 'margin-top: 238px;margin-left: 136px;';

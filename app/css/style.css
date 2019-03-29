@@ -296,7 +296,9 @@ video {
   margin-top: 238px;
   margin-left: 136px;
 }
-
+.twitter{
+  cursor: pointer;
+}
 .logo {
   -webkit-animation-name: slideInUp;
   animation-name: slideInUp;
@@ -500,7 +502,8 @@ video {
   width: 100px;
   margin: 0 auto;
   border: 1px solid black;
-  padding: 4px 7px
+  padding: 4px 7px;
+  cursor: pointer;
 }
 @-moz-keyframes spin {
   100% {
