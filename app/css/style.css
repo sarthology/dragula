@@ -20,6 +20,10 @@ body {
   object-fit: cover;
   transition: opacity 1s, filter 1s;
 }
+.support-buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
 button {
   background-color: white;
@@ -504,6 +508,36 @@ video {
   border: 1px solid black;
   padding: 4px 7px;
   cursor: pointer;
+}
+.advert{
+  font-family: "OpenSans";
+  display: none;
+}
+.stats{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.stats h1{
+  font-weight: 100;
+  font-size: 46px;
+  margin: 0;
+}
+.gifclaps{
+  margin: 0 auto;
+}
+.gifclaps img{
+  width: 200px;
+}
+.donate-us{
+text-align: center;
+padding: 0 25px;
+}
+.advert-close{
+  text-align: right;
+  font-size: 20px;
+  padding: 4px 14px 0px 4px;
 }
 @-moz-keyframes spin {
   100% {

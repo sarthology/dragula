@@ -45,13 +45,12 @@ const aboutTab = document.querySelector('.aboutTab');
 const setting = document.querySelector('#setting');
 const next = document.querySelector('.next');
 const twitter = document.querySelector('.twitter');
+const advert = document.querySelector('.advert');
+const advertClose = document.querySelector('.advert-close');
 const donation = document.querySelector('.donation');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
 const emailInput = document.getElementById('email');
-
-
-
 
 
 // Event to open main window
@@ -108,7 +107,6 @@ reload.onclick = (event) => {
 
 	loadImage(keyword.value);
 };
-
 donation.onclick = (event) => {
 	event.preventDefault();
 
@@ -119,11 +117,9 @@ twitter.onclick = (event) => {
 
 	shell.openExternal('https://twitter.com/_teamxenox');
 };
-
 document.querySelector('.reset').onclick = () => {
 	store.set('settings', null);
 };
-
 setting.onclick = (event) => {
 	event.preventDefault();
 	loadSettings();
@@ -180,6 +176,13 @@ original.onclick = (event) => {
 	event.preventDefault();
 	drag.classList.toggle('image-original');
 	drag.classList.toggle('image-canvas');
+};
+
+advertClose.onclick = (event) => {
+	event.preventDefault();
+	advert.style ='display:none';
+	main.style = 'display:grid';
+	ipcRenderer.send('open');
 };
 
 next.onclick = (event) => {
@@ -356,6 +359,13 @@ const loadSettings = () => {
 		document.querySelector('input[value="markdown"]').checked = true;
 	}
 };
+
+ipcRenderer.on('checkDrag',()=>{
+	advert.style ='display:grid';
+	main.style = 'display:none';
+	document.querySelector('.drag h1').innerHTML = store.get('settings.dragCount');
+	document.querySelector('.reloads h1').innerHTML = store.get('settings.reloads');
+});
 
 window._saved = false;
 window.onbeforeunload = (e) => {

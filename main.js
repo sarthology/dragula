@@ -37,7 +37,6 @@ function createWindow() {
 // Function to handle native drag and drop
 ipcMain.on('ondragstart', (event, filePath) => {
 	let file = nativeImage.createFromDataURL(filePath);
-
 	fs.writeFile(app.getPath('temp')+'/image.png', file.toPNG(), (err) => {
 		if(err) console.log(err);
 		event.sender.startDrag({
@@ -45,6 +44,14 @@ ipcMain.on('ondragstart', (event, filePath) => {
 			icon: file
 		});
 		store.set('settings.dragCount',store.get('settings.dragCount')+1);
+		if(store.get('settings.dragCount')%50 == 0){
+			event.sender.send('checkDrag');
+			win.setBounds({
+				width: 550,
+				height: 450
+			});
+			positioner.move('center');
+		}
 	});
 });
 
