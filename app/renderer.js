@@ -48,6 +48,8 @@ const twitter = document.querySelector('.twitter');
 const donation = document.querySelector('.donation');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
+const emailInput = document.getElementById('email');
+
 
 
 
@@ -192,9 +194,6 @@ next.onclick = (event) =>{
 		if(store.get('settings.onboarded')){
 			how.style = 'display:none';
 			settings.style = 'display:grid';
-			active.classList.remove('active');
-			shiftIndicator('s1');
-			document.getElementById('s1').classList.add('active');
 		}
 		else{
 			how.style = 'display:none';
@@ -205,18 +204,19 @@ next.onclick = (event) =>{
 
 subcribe.onclick = (event)=>{
 	event.preventDefault();
-
-	var emailInput = document.getElementById('email');
-	api.subscribe(emailInput.value).then(value => {
-		store.set('uid', JSON.parse(value).user._id);
-	});
-
-	join.style ='display:none';
-	thanks.style ='display:grid';
-	setTimeout(()=>{
-		thanks.style ='display:none';
-		settings.style='display:grid';
-	},3500);
+	if(emailInput.value){
+		store.set('settings.onboarded',true);
+		api.subscribe(emailInput.value).then(value => {
+			store.set('uid', JSON.parse(value).user._id);
+		});
+	
+		join.style ='display:none';
+		thanks.style ='display:grid';
+		setTimeout(()=>{
+			thanks.style ='display:none';
+			settings.style='display:grid';
+		},3500);
+	}
 };
 
 // Event to start image dragging 
@@ -270,6 +270,9 @@ displayTab.onclick = ()=>{
 helpTab.onclick = ()=>{
 	how.style = 'display:grid';
 	settings.style = 'display:none';
+	document.querySelector('.active').classList.remove('active');
+	shiftIndicator('s1');
+	document.getElementById('s1').classList.add('active');
 };
 aboutTab.onclick = ()=>{
 	about.style = 'display:grid';
