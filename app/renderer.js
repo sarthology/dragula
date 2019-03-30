@@ -48,7 +48,8 @@ const next = document.querySelector('.next');
 const twitter = document.querySelector('.twitter');
 const advert = document.querySelector('.advert');
 const advertClose = document.querySelector('.advert-close');
-const donation = document.querySelector('.donation');
+const payme = document.querySelector('.payme');
+const happyTweet = document.querySelector('.happy-tweet');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
 const emailInput = document.getElementById('email');
@@ -108,7 +109,7 @@ reload.onclick = (event) => {
 
 	loadImage(keyword.value);
 };
-donation.onclick = (event) => {
+payme.onclick = (event) => {
 	event.preventDefault();
 
 	shell.openExternal('https://www.paypal.me/Sarthakit');
@@ -117,6 +118,11 @@ twitter.onclick = (event) => {
 	event.preventDefault();
 
 	shell.openExternal('https://twitter.com/_teamxenox');
+};
+happyTweet.onclick = (event) => {
+	event.preventDefault();
+
+	shell.openExternal('https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20'+store.get('settings.dragCount')+'%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox');
 };
 document.querySelector('.reset').onclick = () => {
 	store.set('settings', null);
