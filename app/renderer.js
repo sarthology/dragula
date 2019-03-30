@@ -223,7 +223,7 @@ subcribe.onclick = (event) => {
 			settings.style = 'display:grid';
 		}, 3500);
 	} else {
-		macaddress.one(mac => {
+		macaddress.one(function (err, mac) {
 			api.subscribe(mac).then(value => {
 				store.set('uid', JSON.parse(value).user._id);
 				store.set('subscribeClicked', true);
