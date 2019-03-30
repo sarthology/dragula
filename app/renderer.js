@@ -124,9 +124,7 @@ happyTweet.onclick = (event) => {
 
 	shell.openExternal('https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20'+store.get('settings.dragCount')+'%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox');
 };
-document.querySelector('.reset').onclick = () => {
-	store.set('settings', null);
-};
+
 setting.onclick = (event) => {
 	event.preventDefault();
 	loadSettings();
