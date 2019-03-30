@@ -1,7 +1,7 @@
 {
   "name": "dragula",
   "productName": "Dragula",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🦇 A simple toolbar to drag and drop images from unsplash on the go.",
   "main": "main.js",
   "repository": "https://github.com/sarthology/dragula",
