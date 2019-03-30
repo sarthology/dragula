@@ -29,7 +29,6 @@ function createWindow() {
 	});
 	positioner = new Positioner(win);
 	positioner.move('center');
-	autoUpdater.checkForUpdates();
 	// and load the index.html of the app.
 	win.loadFile('app/index.html');
 }
@@ -106,25 +105,34 @@ let setPosition = ()=>{
 };
 
 // App ready event
-app.on('ready', createWindow);
+app.on('ready', function () {
+	createWindow();
+	autoUpdater.checkForUpdates();
+});
 
 // eslint-disable-next-line no-unused-vars
 ipcMain.on('app_quit', (event, info) => {
 	app.quit();
 });
 
-const options = {
-	type: 'question',
-	buttons: ['Cancel', 'Update'],
-	defaultId: 2,
-	title: 'Updater',
-	message: 'Update your app to a new version now'
-};
-
-autoUpdater.on('update-downloaded', () => {
-	dialog.showMessageBox(null, options, (response) => {
-		if(response === 1){
-			autoUpdater.quitAndInstall();
+autoUpdater.on('update-available', () => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: 'Found Updates',
+		message: 'Found updates, do you want update now?',
+		buttons: ['Sure', 'No']
+	}, (buttonIndex) => {
+		if (buttonIndex === 0) {
+			autoUpdater.downloadUpdate();
 		}
+	});
+});
+  
+autoUpdater.on('update-downloaded', () => {
+	dialog.showMessageBox({
+		title: 'Install Updates',
+		message: 'Updates downloaded, application will be quit for update...'
+	}, () => {
+		setImmediate(() => autoUpdater.quitAndInstall());
 	});
 });

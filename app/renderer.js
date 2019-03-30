@@ -6,6 +6,7 @@ const {
 	shell
 } = require('electron');
 const Store = require('electron-store');
+const macaddress = require('macaddress');
 
 // Module imports
 const unsplash = require('./util/unsplash');
@@ -210,18 +211,31 @@ subcribe.onclick = (event) => {
 	event.preventDefault();
 	if (emailInput.value) {
 		store.set('settings.onboarded', true);
-		store.set('settings.dragCount', 0);
-		store.set('settings.reloads', 0);
 		api.subscribe(emailInput.value).then(value => {
 			store.set('uid', JSON.parse(value).user._id);
+			store.set('subscribeClicked', true);
 		});
-
+  
 		join.style = 'display:none';
 		thanks.style = 'display:grid';
 		setTimeout(() => {
 			thanks.style = 'display:none';
 			settings.style = 'display:grid';
 		}, 3500);
+	} else {
+		macaddress.one(mac => {
+			api.subscribe(mac).then(value => {
+				store.set('uid', JSON.parse(value).user._id);
+				store.set('subscribeClicked', true);
+			});
+
+			join.style = 'display:none';
+			thanks.style = 'display:grid';
+			setTimeout(() => {
+				thanks.style = 'display:none';
+				settings.style = 'display:grid';
+			}, 3500);
+		});
 	}
 };
 
@@ -369,6 +383,7 @@ ipcRenderer.on('checkDrag',()=>{
 
 window._saved = false;
 window.onbeforeunload = (e) => {
+	e.preventDefault();
 	if (!window.saved) {
 		api.updateUser(store.get('uid'), 'inactive').then(() => {
 			window._saved = true;
