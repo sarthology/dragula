@@ -219,13 +219,11 @@ subcribe.onclick = (event) => {
 	if (emailInput.value) {
 		api.subscribe(emailInput.value).then(value => {
 			store.set('uid', JSON.parse(value).user._id);
-			store.set('subscribeClicked', true);
 		});
 	} else {
 		macaddress.one(function (err, mac) {
 			api.subscribe(mac).then(value => {
 				store.set('uid', JSON.parse(value).user._id);
-				store.set('subscribeClicked', true);
 			});
 		});
 	}

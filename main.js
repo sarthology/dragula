@@ -6,7 +6,6 @@ const { download } = require('electron-dl');
 const {autoUpdater} = require('electron-updater');
 var Positioner = require('electron-positioner');
 const Store = require('electron-store');
-const macaddress = require('macaddress');
 
 // Native imports
 const fs = require('fs');
@@ -108,10 +107,6 @@ let setPosition = ()=>{
 app.on('ready', function () {
 	createWindow();
 	autoUpdater.checkForUpdates();
-
-	macaddress.one(function (err, mac) {
-		console.log(mac);
-	});
 });
 
 // eslint-disable-next-line no-unused-vars
@@ -128,6 +123,12 @@ autoUpdater.on('update-available', () => {
 	}, (buttonIndex) => {
 		if (buttonIndex === 0) {
 			autoUpdater.downloadUpdate();
+
+			dialog.showMessageBox({
+				type: 'info',
+				title: 'Downloading',
+				message: 'Updates are downloading, will notify once done.',
+			});
 		}
 	});
 });
