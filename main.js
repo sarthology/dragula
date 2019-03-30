@@ -44,6 +44,7 @@ ipcMain.on('ondragstart', (event, filePath) => {
 			file: app.getPath('temp')+'/image.png',
 			icon: file
 		});
+		store.set('settings.dragCount',store.get('settings.dragCount')+1);
 	});
 });
 
@@ -89,11 +90,11 @@ ipcMain.on('setting', () => {
 });
 
 let setPosition = ()=>{
-	if(store.get('settings')){
+	if(store.get('settings.position')){
 		positioner.move(store.get('settings.position'));		
 	}
 	else{
-		positioner.move('bottemRight');		
+		positioner.move('bottomRight');		
 	}
 };
 
