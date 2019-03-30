@@ -42,7 +42,7 @@ ipcMain.on('ondragstart', (event, filePath) => {
 			icon: file
 		});
 		store.set('settings.dragCount',store.get('settings.dragCount')+1);
-		if(store.get('settings.dragCount')%1 == 0){
+		if(store.get('settings.dragCount')%50 == 0){
 			event.sender.send('checkDrag');
 			win.setBounds({
 				width: 550,

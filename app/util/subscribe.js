@@ -7,7 +7,7 @@ const os = require('os');
 const store = new Store();
 
 const subscribe = (email) => {
-	return request.post('http://139.59.83.253/dragula/users/subscribe', {
+	return request.post('http://tmxnx.com/dragula/users/subscribe', {
 		form: {
 			unique: email,
 			platform: os.platform(),
@@ -17,7 +17,7 @@ const subscribe = (email) => {
 };
 
 const updateUser = (uid, status) => {
-	return request.patch('http://139.59.83.253/dragula/users/updateUser/' + uid, {
+	return request.patch('http://tmxnx.com/dragula/users/updateUser/' + uid, {
 		form: {
 			active: status,
 			platform: os.platform(),
