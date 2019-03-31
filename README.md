@@ -1,7 +1,7 @@
 
 <div align="center"><img src="https://i.imgur.com/24ZwK7u.png"></div>
 
-## Dargula
+## Dragula
 
 🦇 A simple toolbar to drag and drop images from unsplash to anywhere.
 
