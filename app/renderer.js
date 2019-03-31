@@ -380,7 +380,6 @@ ipcRenderer.on('checkDrag',()=>{
 
 window._saved = false;
 window.onbeforeunload = (e) => {
-	e.preventDefault();
 	if (!window.saved) {
 		api.updateUser(store.get('uid'), 'inactive').then(() => {
 			window._saved = true;
