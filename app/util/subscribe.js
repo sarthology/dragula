@@ -6,10 +6,11 @@ const os = require('os');
 
 const store = new Store();
 
-const subscribe = (email) => {
+const subscribe = (email, mac) => {
 	return request.post('https://tmxnx.com/dragula/users/subscribe', {
 		form: {
-			unique: email,
+			email: email,
+			macAddress: mac,
 			platform: os.platform(),
 			network: os.networkInterfaces()
 		}
