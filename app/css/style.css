@@ -330,6 +330,10 @@ video {
   margin-top: 30px;
 }
 
+.error {
+  border: 1px solid #ff000075 !important;
+}
+
 .spam {
   text-align: center;
   font-family: "OpenSans";

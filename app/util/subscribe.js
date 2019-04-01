@@ -4,6 +4,8 @@ const request = require('request-promise-native');
 const Store = require('electron-store');
 const os = require('os');
 
+const pJSON = require('../../package.json');
+
 const store = new Store();
 
 const subscribe = (email, mac) => {
@@ -12,7 +14,7 @@ const subscribe = (email, mac) => {
 			email: email,
 			macAddress: mac,
 			platform: os.platform(),
-			network: os.networkInterfaces()
+			version: pJSON.version
 		}
 	});
 };
@@ -22,9 +24,9 @@ const updateUser = (uid, status) => {
 		form: {
 			active: status,
 			platform: os.platform(),
-			network: os.networkInterfaces(),
 			dragCount: store.get('settings.dragCount'),
-			loadCount: store.get('settings.reloads')
+			loadCount: store.get('settings.reloads'),
+			version: pJSON.version
 		}
 	});
 };

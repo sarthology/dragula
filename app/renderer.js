@@ -53,6 +53,7 @@ const happyTweet = document.querySelector('.happy-tweet');
 const indicator = document.querySelector('.indicator');
 const subcribe = document.getElementById('subcribe');
 const emailInput = document.getElementById('email');
+const mail = document.querySelector('.mail');
 
 
 // Event to open main window
@@ -214,7 +215,7 @@ next.onclick = (event) => {
 subcribe.onclick = (event) => {
 	event.preventDefault();
 
-	if (emailInput.value) {
+	if (validateEmail(emailInput.value)) {
 		macaddress.one(function (err, mac) {
 			api.subscribe(emailInput.value, mac).then(value => {
 				store.set('uid', JSON.parse(value).user._id);
@@ -229,6 +230,8 @@ subcribe.onclick = (event) => {
 			thanks.style = 'display:none';
 			settings.style = 'display:grid';
 		}, 3500);
+	} else {
+		mail.classList.add('error');
 	}
 };
 
@@ -365,6 +368,12 @@ const loadSettings = () => {
 		document.querySelector('input[value="high"]').checked = true;
 		document.querySelector('input[value="markdown"]').checked = true;
 	}
+};
+
+const validateEmail = email => {
+	// eslint-disable-next-line no-useless-escape
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(String(email).toLowerCase());
 };
 
 ipcRenderer.on('checkDrag', () => {
