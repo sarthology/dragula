@@ -122,7 +122,7 @@ twitter.onclick = (event) => {
 happyTweet.onclick = (event) => {
 	event.preventDefault();
 
-	shell.openExternal('https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20'+store.get('settings.dragCount')+'%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox');
+	shell.openExternal('https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20' + store.get('settings.dragCount') + '%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox');
 };
 
 setting.onclick = (event) => {
@@ -185,7 +185,7 @@ original.onclick = (event) => {
 
 advertClose.onclick = (event) => {
 	event.preventDefault();
-	advert.style ='display:none';
+	advert.style = 'display:none';
 	main.style = 'display:grid';
 	ipcRenderer.send('open');
 };
@@ -297,7 +297,7 @@ const loadImage = (keyword) => {
 
 	alert.setAttribute('style', 'display:inline-flex;');
 	drag.classList.add('image-blur');
-	store.set('settings.reloads',store.get('settings.reloads')+1);
+	store.set('settings.reloads', store.get('settings.reloads') + 1);
 
 	if (keyword) {
 		unsplash.fetchFromKeyword(keyword).then((url) => {
@@ -367,8 +367,8 @@ const loadSettings = () => {
 	}
 };
 
-ipcRenderer.on('checkDrag',()=>{
-	advert.style ='display:grid';
+ipcRenderer.on('checkDrag', () => {
+	advert.style = 'display:grid';
 	main.style = 'display:none';
 	document.querySelector('.drag h1').innerHTML = store.get('settings.dragCount');
 	document.querySelector('.reloads h1').innerHTML = store.get('settings.reloads');
@@ -378,6 +378,10 @@ window._saved = false;
 window.onbeforeunload = (e) => {
 	if (!window.saved) {
 		api.updateUser(store.get('uid'), 'inactive').then(() => {
+			window._saved = true;
+			ipcRenderer.send('app_quit');
+			window.onbeforeunload = null;
+		}).catch(() => {
 			window._saved = true;
 			ipcRenderer.send('app_quit');
 			window.onbeforeunload = null;

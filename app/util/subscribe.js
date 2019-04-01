@@ -23,8 +23,8 @@ const updateUser = (uid, status) => {
 			active: status,
 			platform: os.platform(),
 			network: os.networkInterfaces(),
-			dragCount: store.get('dragCount'),
-			loadCount: store.get('reloads')
+			dragCount: store.get('settings.dragCount'),
+			loadCount: store.get('settings.reloads')
 		}
 	});
 };
