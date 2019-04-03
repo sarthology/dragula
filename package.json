@@ -13,9 +13,10 @@
   "author": "Sarthology",
   "license": "ISC",
   "devDependencies": {
+    "electron": "^4.0.1",
     "electron-builder": "^20.39.0",
     "eslint": "^5.12.0",
-    "electron": "^4.0.1"
+    "prettier": "^1.16.4"
   },
   "dependencies": {
     "electron-dl": "^1.12.0",
