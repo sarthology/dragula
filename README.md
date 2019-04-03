@@ -51,7 +51,7 @@ Before running this locally you must have these installed
 
 ## Installing
 
-You can download latest prebuilt binaries for window and macos from [releases](https://github.com/sarthology/dragula/releases)
+You can download latest prebuilt binaries for windows and macos from [releases](https://github.com/sarthology/dragula/releases)
 
 If you would like to download and run dragula from source see development section below.
 
@@ -69,6 +69,9 @@ That's it.
 
 Feel free to contribute to this project and treat it like your own. 😊
 
+## Useful Links
+* Website: https://dragula.teamxenox.com/
+* Newsletters: https://dragula.teamxenox.com/#subscribe
 
 ## License
 
