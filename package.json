@@ -8,7 +8,9 @@
   "scripts": {
     "start": "electron .",
     "build": "build --mac",
-    "ship": "build --mac -p always"
+    "ship": "build --mac -p always",
+    "build:linux": "build --linux",
+    "ship:linux": "build --linux -p always"
   },
 	"build": {
 		"appId": "com.github.sarthak.dragula",
