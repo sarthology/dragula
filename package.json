@@ -10,7 +10,7 @@
     "build": "build --mac",
     "ship": "build --mac -p always"
   },
-  "author": "Sarthology",
+	"author": "Sarthology <something@something.com>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^4.0.1",
