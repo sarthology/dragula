@@ -6,10 +6,10 @@ const { download } = require('electron-dl');
 const {autoUpdater} = require('electron-updater');
 var Positioner = require('electron-positioner');
 const Store = require('electron-store');
-const { platform } = require('os')
 
 // Native imports
 const fs = require('fs');
+const { platform } = require('os')
 const store = new Store();
 
 // Global Variables
