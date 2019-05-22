@@ -8,9 +8,37 @@
   "scripts": {
     "start": "electron .",
     "build": "build --mac",
-    "ship": "build --mac -p always"
+    "ship": "build --mac -p always",
+    "build:linux": "build --linux",
+    "ship:linux": "build --linux -p always"
   },
-  "author": "Sarthology",
+	"build": {
+		"appId": "com.github.sarthak.dragula",
+		"linux": {
+			"category": "Utility",
+			"target": [
+				{
+					"target": "AppImage",
+					"arch": [
+						"x64"
+					]
+				},
+				{
+					"target": "deb",
+					"arch": [
+						"x64"
+					]
+				},
+				{
+					"target": "tar.gz",
+					"arch": [
+						"x64"
+					]
+				}
+			]
+		}
+	},
+	"author": "Sarthology <something@something.com>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^4.0.1",

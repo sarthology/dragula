@@ -9,6 +9,7 @@ const Store = require('electron-store');
 
 // Native imports
 const fs = require('fs');
+const { platform } = require('os')
 const store = new Store();
 
 // Global Variables
@@ -96,17 +97,20 @@ ipcMain.on('setting', () => {
 
 let setPosition = ()=>{
 	if(store.get('settings.position')){
-		positioner.move(store.get('settings.position'));		
+		positioner.move(store.get('settings.position'));
 	}
 	else{
-		positioner.move('bottomRight');		
+		positioner.move('bottomRight');
 	}
 };
 
 // App ready event
 app.on('ready', function () {
 	createWindow();
-	autoUpdater.checkForUpdates();
+
+	if(platform() !== 'linux') {
+		autoUpdater.checkForUpdates();
+	}
 });
 
 // eslint-disable-next-line no-unused-vars
@@ -132,7 +136,7 @@ autoUpdater.on('update-available', () => {
 		}
 	});
 });
-  
+
 autoUpdater.on('update-downloaded', () => {
 	dialog.showMessageBox({
 		title: 'Install Updates',
