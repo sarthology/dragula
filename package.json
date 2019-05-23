@@ -14,6 +14,7 @@
   },
 	"build": {
 		"appId": "com.github.sarthak.dragula",
+    "productName": "dragula",
 		"linux": {
 			"category": "Utility",
 			"target": [
