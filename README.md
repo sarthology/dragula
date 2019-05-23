@@ -49,16 +49,22 @@ Before running this locally you must have these installed
 + Node
 + Electron
 
-## Installing
+## Development
 
-### Manually
 It's built in electron so the process to start this is really easy
 
-1. `npm install`
-2. `npm install electron -g`
+1. `git clone https://github.com/sarthology/dragula`
+2. `npm install`
 3. `npm start`
 
 That's it.
+
+## Installing
+
+You can download latest prebuilt binaries for windows and macos from [releases](https://github.com/sarthology/dragula/releases)
+
+If you would like to download and run dragula from source see development section below.
+
 
 ### Linux
 On linux you can install dragula easily by downloading the latest [release](https://github.com/sarthology/dragula/releases)
@@ -84,6 +90,9 @@ cd dragula
 
 Feel free to contribute to this project and treat it like your own. 😊
 
+## Useful Links
+* Website: https://dragula.teamxenox.com/
+* Newsletters: https://dragula.teamxenox.com/#subscribe
 
 ## License
 
