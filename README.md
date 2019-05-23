@@ -49,12 +49,6 @@ Before running this locally you must have these installed
 + Node
 + Electron
 
-## Installing
-
-You can download latest prebuilt binaries for windows and macos from [releases](https://github.com/sarthology/dragula/releases)
-
-If you would like to download and run dragula from source see development section below.
-
 ## Development
 
 It's built in electron so the process to start this is really easy
@@ -64,6 +58,33 @@ It's built in electron so the process to start this is really easy
 3. `npm start`
 
 That's it.
+
+## Installing
+
+You can download latest prebuilt binaries for windows and macos from [releases](https://github.com/sarthology/dragula/releases)
+
+If you would like to download and run dragula from source see development section below.
+
+
+### Linux
+On linux you can install dragula easily by downloading the latest [release](https://github.com/sarthology/dragula/releases)
+
+#### Debian Based(Ubuntu/LinuxMint)
+```
+sudo dpkg -i dragula_*_amd64.deb
+```
+#### AppImage
+You can run appimage from commandline or you can add it to your path
+```
+./dragula-*-x86_64.AppImage
+```
+
+#### tar.gz
+```
+tar -xvf dragula-*.tar.gz
+cd dragula
+./dragula
+```
 
 ## Contributing
 
