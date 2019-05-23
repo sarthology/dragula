@@ -12,8 +12,8 @@
 
 #### 1. Drag and Drop image anywhere
 
-Simply drag and drop image anywhere. It supports all the software that has drag and drop image options that includes all **Adobe Softwares**, **Microsoft Office** etc. 
- 
+Simply drag and drop image anywhere. It supports all the software that has drag and drop image options that includes all **Adobe Softwares**, **Microsoft Office** etc.
+
 
 <div align="center"><img src="https://media.giphy.com/media/k5lb2jo8i4iHxmWLDe/giphy.gif"></div>
 
@@ -51,6 +51,7 @@ Before running this locally you must have these installed
 
 ## Installing
 
+### Manually
 It's built in electron so the process to start this is really easy
 
 1. `npm install`
@@ -59,9 +60,29 @@ It's built in electron so the process to start this is really easy
 
 That's it.
 
+### Linux
+On linux you can install dragula easily by downloading the latest [release](https://github.com/sarthology/dragula/releases)
+
+#### Debian Based(Ubuntu/LinuxMint)
+```
+sudo dpkg -i dragula_*_amd64.deb
+```
+#### AppImage
+You can run appimage from commandline or you can add it to your path
+```
+./dragula-*-x86_64.AppImage
+```
+
+#### tar.gz
+```
+tar -xvf dragula-*.tar.gz
+cd dragula
+./dragula
+```
+
 ## Contributing
 
-Feel free to contribute to this project and treat it like your own. 😊 
+Feel free to contribute to this project and treat it like your own. 😊
 
 
 ## License
