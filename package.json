@@ -20,15 +20,21 @@
 			"target": [
 				{
 					"target": "AppImage",
-					"arch": [ "x64" ]
+					"arch": [
+						"x64"
+					]
 				},
 				{
 					"target": "deb",
-					"arch": [ "x64" ]
+					"arch": [
+						"x64"
+					]
 				},
 				{
 					"target": "tar.gz",
-					"arch": [ "x64" ]
+					"arch": [
+						"x64"
+					]
 				}
 			]
 		}
@@ -41,7 +47,10 @@
 		"eslint": "^5.12.0",
 		"eslint-config-prettier": "^4.1.0",
 		"eslint-plugin-prettier": "^3.0.1",
-		"prettier": "^1.16.4"
+		"husky": "^4.2.3",
+		"lint-staged": "^10.0.8",
+		"prettier": "^1.16.4",
+		"pretty-quick": "^2.0.1"
 	},
 	"dependencies": {
 		"electron-dl": "^1.12.0",
@@ -52,5 +61,13 @@
 		"node-fetch": "^2.3.0",
 		"request": "^2.88.0",
 		"request-promise-native": "^1.0.7"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"./app/**/*.{js, css, json}": ["prettier --write"]
 	}
 }
