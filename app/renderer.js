@@ -1,10 +1,7 @@
 'use strict';
 
 // Dependencies
-const {
-	ipcRenderer,
-	shell
-} = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const Store = require('electron-store');
 const macaddress = require('macaddress');
 
@@ -55,9 +52,8 @@ const subcribe = document.getElementById('subcribe');
 const emailInput = document.getElementById('email');
 const mail = document.querySelector('.mail');
 
-
 // Event to open main window
-enter.onclick = (event) => {
+enter.onclick = event => {
 	event.preventDefault();
 
 	if (!drag.getAttribute('src')) {
@@ -69,11 +65,13 @@ enter.onclick = (event) => {
 	setTimeout(() => {
 		search.classList.add('searchH');
 	}, 1000);
-	document.querySelector('.markdown img').setAttribute('src', 'assets/' + store.get('settings.link') + '.png');
+	document
+		.querySelector('.markdown img')
+		.setAttribute('src', 'assets/' + store.get('settings.link') + '.png');
 	ipcRenderer.send('open');
 };
 
-save.onclick = (event) => {
+save.onclick = event => {
 	event.preventDefault();
 
 	settings.style = 'display:none';
@@ -84,7 +82,7 @@ save.onclick = (event) => {
 	ipcRenderer.send('close');
 };
 
-close.onclick = (event) => {
+close.onclick = event => {
 	event.preventDefault();
 
 	settings.style = 'display:none';
@@ -95,8 +93,8 @@ close.onclick = (event) => {
 	ipcRenderer.send('close');
 };
 
-// Event to search image by keyword 
-keyword.onkeydown = (event) => {
+// Event to search image by keyword
+keyword.onkeydown = event => {
 	if (event.keyCode === 13) {
 		if (event.currentTarget.value) {
 			loadImage(event.currentTarget.value);
@@ -104,29 +102,33 @@ keyword.onkeydown = (event) => {
 	}
 };
 
-// Event to load new image 
-reload.onclick = (event) => {
+// Event to load new image
+reload.onclick = event => {
 	event.preventDefault();
 
 	loadImage(keyword.value);
 };
-payme.onclick = (event) => {
+payme.onclick = event => {
 	event.preventDefault();
 
 	shell.openExternal('https://www.paypal.me/Sarthakit');
 };
-twitter.onclick = (event) => {
+twitter.onclick = event => {
 	event.preventDefault();
 
 	shell.openExternal('https://twitter.com/_teamxenox');
 };
-happyTweet.onclick = (event) => {
+happyTweet.onclick = event => {
 	event.preventDefault();
 
-	shell.openExternal('https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20' + store.get('settings.dragCount') + '%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox');
+	shell.openExternal(
+		'https://twitter.com/intent/tweet?text=Hey,%20I%20just%20achieved%20' +
+			store.get('settings.dragCount') +
+			'%20drags%20on%20Dragula,%20an%20awesome%20app%20to%20drag%20and%20drop%20free%20stock%20images%20anywhere.%20Check%20it%20out!%20😊%20@_teamxenox'
+	);
 };
 
-setting.onclick = (event) => {
+setting.onclick = event => {
 	event.preventDefault();
 	loadSettings();
 	settings.style = 'display:grid';
@@ -135,8 +137,8 @@ setting.onclick = (event) => {
 	ipcRenderer.send('setting');
 };
 
-// Event to minimize main window 
-minimize.onclick = (event) => {
+// Event to minimize main window
+minimize.onclick = event => {
 	event.preventDefault();
 	main.style = 'display:none';
 	enter.style = 'display:block';
@@ -144,17 +146,17 @@ minimize.onclick = (event) => {
 	ipcRenderer.send('close');
 };
 
-// Event to download the image 
-download.onclick = (event) => {
+// Event to download the image
+download.onclick = event => {
 	event.preventDefault();
 	markdownAnimate();
 	ipcRenderer.send('download', {
-		'url': drag.getAttribute('src')
+		url: drag.getAttribute('src')
 	});
 };
 
 // Event to copy the markdown code
-markdown.onclick = (event) => {
+markdown.onclick = event => {
 	event.preventDefault();
 	let img;
 	alert.setAttribute('style', 'display:inline-flex;');
@@ -166,32 +168,32 @@ markdown.onclick = (event) => {
 		img = canvas.getOriginalDataUrl(drag);
 	}
 
-	imgur.unploadImage(img).then((body) => {
+	imgur.unploadImage(img).then(body => {
 		alert.setAttribute('style', 'display:none;');
 		drag.classList.remove('image-blur');
 		const data = JSON.parse(body).data;
 		ipcRenderer.send('link', {
-			'url': data.link
+			url: data.link
 		});
 		markdownAnimate();
 	});
 };
 
 // Event to see the original size of image
-original.onclick = (event) => {
+original.onclick = event => {
 	event.preventDefault();
 	drag.classList.toggle('image-original');
 	drag.classList.toggle('image-canvas');
 };
 
-advertClose.onclick = (event) => {
+advertClose.onclick = event => {
 	event.preventDefault();
 	advert.style = 'display:none';
 	main.style = 'display:grid';
 	ipcRenderer.send('open');
 };
 
-next.onclick = (event) => {
+next.onclick = event => {
 	event.preventDefault();
 	const active = document.querySelector('.active');
 	let currentState = active.getAttribute('id');
@@ -212,11 +214,11 @@ next.onclick = (event) => {
 	}
 };
 
-subcribe.onclick = (event) => {
+subcribe.onclick = event => {
 	event.preventDefault();
 
 	if (validateEmail(emailInput.value)) {
-		macaddress.one(function (err, mac) {
+		macaddress.one(function(err, mac) {
 			api.subscribe(emailInput.value, mac).then(value => {
 				store.set('uid', JSON.parse(value).user._id);
 			});
@@ -235,18 +237,21 @@ subcribe.onclick = (event) => {
 	}
 };
 
-// Event to start image dragging 
-drag.ondragstart = (event) => {
+// Event to start image dragging
+drag.ondragstart = event => {
 	event.preventDefault();
 	if (document.getElementsByClassName('image-original')[0]) {
 		ipcRenderer.send('ondragstart', canvas.getDataUrl(event.currentTarget));
 	} else {
-		ipcRenderer.send('ondragstart', canvas.getOriginalDataUrl(event.currentTarget));
+		ipcRenderer.send(
+			'ondragstart',
+			canvas.getOriginalDataUrl(event.currentTarget)
+		);
 	}
 };
 
 // Event to check if image loaded
-drag.onload = (event) => {
+drag.onload = event => {
 	event.preventDefault();
 	alert.setAttribute('style', 'display:none;');
 	drag.classList.remove('image-blur');
@@ -296,18 +301,17 @@ aboutTab.onclick = () => {
 };
 
 // Function to fetch image from unsplash
-const loadImage = (keyword) => {
-
+const loadImage = keyword => {
 	alert.setAttribute('style', 'display:inline-flex;');
 	drag.classList.add('image-blur');
 	store.set('settings.reloads', store.get('settings.reloads') + 1);
 
 	if (keyword) {
-		unsplash.fetchFromKeyword(keyword).then((url) => {
+		unsplash.fetchFromKeyword(keyword).then(url => {
 			drag.setAttribute('src', url);
 		});
 	} else {
-		unsplash.fetchRandom().then((url) => {
+		unsplash.fetchRandom().then(url => {
 			drag.setAttribute('src', url);
 		});
 	}
@@ -315,7 +319,6 @@ const loadImage = (keyword) => {
 
 // Function to do animation for markdown code successfully copied
 const markdownAnimate = () => {
-
 	alert.setAttribute('style', 'display:inline-flex;');
 	loader.setAttribute('style', 'display:none;');
 	message.setAttribute('style', 'display:block;');
@@ -329,7 +332,7 @@ const markdownAnimate = () => {
 	}, 2000);
 };
 
-const shiftIndicator = (state) => {
+const shiftIndicator = state => {
 	if (state === 's2') {
 		indicator.style = 'margin-top: 230px;margin-left: 148px;';
 	} else if (state === 's3') {
@@ -349,10 +352,10 @@ const shiftIndicator = (state) => {
 
 const getSettings = () => {
 	let settings = Object.assign(store.get('settings'), {
-		'position': document.querySelector('input[name="position"]:checked').value,
-		'quality': document.querySelector('input[name="quality"]:checked').value,
-		'link': document.querySelector('input[name="link"]:checked').value,
-		'onboarded': true
+		position: document.querySelector('input[name="position"]:checked').value,
+		quality: document.querySelector('input[name="quality"]:checked').value,
+		link: document.querySelector('input[name="link"]:checked').value,
+		onboarded: true
 	});
 	store.set('settings', settings);
 };
@@ -360,7 +363,9 @@ const getSettings = () => {
 const loadSettings = () => {
 	let settings = store.get('settings');
 	if (settings) {
-		document.querySelector(`input[value='${settings.position}']`).checked = true;
+		document.querySelector(
+			`input[value='${settings.position}']`
+		).checked = true;
 		document.querySelector(`input[value='${settings.quality}']`).checked = true;
 		document.querySelector(`input[value='${settings.link}']`).checked = true;
 	} else {
@@ -379,22 +384,29 @@ const validateEmail = email => {
 ipcRenderer.on('checkDrag', () => {
 	advert.style = 'display:grid';
 	main.style = 'display:none';
-	document.querySelector('.drag h1').innerHTML = store.get('settings.dragCount');
-	document.querySelector('.reloads h1').innerHTML = store.get('settings.reloads');
+	document.querySelector('.drag h1').innerHTML = store.get(
+		'settings.dragCount'
+	);
+	document.querySelector('.reloads h1').innerHTML = store.get(
+		'settings.reloads'
+	);
 });
 
 window._saved = false;
-window.onbeforeunload = (e) => {
+window.onbeforeunload = e => {
 	if (!window.saved) {
-		api.updateUser(store.get('uid'), 'inactive').then(() => {
-			window._saved = true;
-			ipcRenderer.send('app_quit');
-			window.onbeforeunload = null;
-		}).catch(() => {
-			window._saved = true;
-			ipcRenderer.send('app_quit');
-			window.onbeforeunload = null;
-		});
+		api
+			.updateUser(store.get('uid'), 'inactive')
+			.then(() => {
+				window._saved = true;
+				ipcRenderer.send('app_quit');
+				window.onbeforeunload = null;
+			})
+			.catch(() => {
+				window._saved = true;
+				ipcRenderer.send('app_quit');
+				window.onbeforeunload = null;
+			});
 	}
 	e.returnValue = false;
 };

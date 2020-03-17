@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'OpenSans';
-  src: url('../assets/open-sans/OpenSans-Light.ttf');
+  font-family: "OpenSans";
+  src: url("../assets/open-sans/OpenSans-Light.ttf");
 }
 
 body {
@@ -20,7 +20,7 @@ body {
   object-fit: cover;
   transition: opacity 1s, filter 1s;
 }
-.support-buttons{
+.support-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -118,7 +118,7 @@ input:focus {
   opacity: 1;
 }
 
-.searchH:hover~#drag {
+.searchH:hover ~ #drag {
   filter: blur(2px);
   opacity: 0.4;
 }
@@ -172,7 +172,7 @@ video {
 
 .logo p {
   text-align: center;
-  font-family: 'OpenSans', sans-serif;
+  font-family: "OpenSans", sans-serif;
   color: #3f3952;
   margin: 0;
   font-size: 45px;
@@ -207,7 +207,7 @@ video {
 .join h1,
 .join h2,
 .join h3 {
-  font-family: 'OpenSans', sans-serif;
+  font-family: "OpenSans", sans-serif;
   margin: 0;
   font-weight: 100;
   text-align: center;
@@ -274,7 +274,7 @@ video {
   font-family: "OpenSans";
   margin: 0;
   font-size: 22px;
-  display: none
+  display: none;
 }
 
 .help .active {
@@ -292,7 +292,7 @@ video {
 
 .indicator {
   position: absolute;
-  background: #F44336;
+  background: #f44336;
   width: 6px;
   height: 6px;
   border-radius: 12px;
@@ -300,7 +300,7 @@ video {
   margin-top: 238px;
   margin-left: 136px;
 }
-.twitter{
+.twitter {
   cursor: pointer;
 }
 .logo {
@@ -358,7 +358,7 @@ video {
   position: absolute;
   width: 90px;
   margin: 40px 40px;
-  z-index: 0
+  z-index: 0;
 }
 
 .thanks .animation {
@@ -416,7 +416,7 @@ video {
   margin: 0;
   padding: 8px 5px;
 }
-.close{
+.close {
   text-align: right;
   cursor: pointer;
   font-weight: 800;
@@ -434,7 +434,7 @@ video {
   margin: 5px;
 }
 
-.option input[type="radio"]:checked+label {
+.option input[type="radio"]:checked + label {
   color: black;
 }
 
@@ -513,32 +513,32 @@ video {
   padding: 4px 7px;
   cursor: pointer;
 }
-.advert{
+.advert {
   font-family: "OpenSans";
   display: none;
 }
-.stats{
+.stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
   padding-bottom: 20px;
 }
-.stats h1{
+.stats h1 {
   font-weight: 100;
   font-size: 46px;
   margin: 0;
 }
-.gifclaps{
+.gifclaps {
   margin: 0 auto;
 }
-.gifclaps img{
+.gifclaps img {
   width: 200px;
 }
-.donate-us{
-text-align: center;
-padding: 0 25px;
+.donate-us {
+  text-align: center;
+  padding: 0 25px;
 }
-.advert-close{
+.advert-close {
   text-align: right;
   font-size: 20px;
   padding: 4px 14px 0px 4px;
