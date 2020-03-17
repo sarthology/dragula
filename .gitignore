@@ -1,5 +1,6 @@
 .vscode/
 .DS_Store
+./eslintcache
 node_modules/
 release-builds
 image.png
