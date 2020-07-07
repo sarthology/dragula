@@ -42,7 +42,7 @@
 	"author": "Sarthology <something@something.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.0.1",
+    "electron": "^7.2.4",
     "electron-builder": "^20.39.0",
     "eslint": "^5.12.0",
     "eslint-config-prettier": "^4.1.0",
