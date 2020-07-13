@@ -1,62 +1,61 @@
 {
- "name": "dragula",
- "productName": "Dragula",
- "version": "1.0.4",
- "description": "🦇 A simple toolbar to drag and drop images from unsplash on the go.",
- "main": "main.js",
- "repository": "https://github.com/sarthology/dragula",
- "scripts": {
-  "start": "electron .",
-  "build": "build --mac",
-  "ship": "build --mac -p always",
-  "build:linux": "build --linux",
-  "ship:linux": "build --linux -p always"
- },
- "build": {
-  "appId": "com.github.sarthak.dragula",
-  "productName": "dragula",
-  "linux": {
-   "category": "Utility",
-   "target": [
-    {
-     "target": "AppImage",
-     "arch": [
-      "x64"
-     ]
-    },
-    {
-     "target": "deb",
-     "arch": [
-      "x64"
-     ]
-    },
-    {
-     "target": "tar.gz",
-     "arch": [
-      "x64"
-     ]
-    }
-   ]
-  }
- },
- "author": "Sarthology <something@something.com>",
- "license": "ISC",
- "devDependencies": {
-  "electron": "^7.2.4",
-  "electron-builder": "^20.39.0",
-  "eslint": "^5.12.0",
-  "eslint-config-prettier": "^4.1.0",
-  "eslint-plugin-prettier": "^3.0.1",
-  "prettier": "^1.16.4"
- },
- "dependencies": {
-  "electron-dl": "^1.12.0",
-  "electron-positioner": "^4.1.0",
-  "electron-store": "^2.0.0",
-  "electron-updater": "^4.0.6",
-  "macaddress": "^0.2.9",
-  "node-fetch": "^2.3.0",
-  "request": "^2.88.0",
-  "request-promise-native": "^1.0.7"
- }
+	"name": "dragula",
+	"productName": "Dragula",
+	"version": "1.0.4",
+	"description": "🦇 A simple toolbar to drag and drop images from unsplash on the go.",
+	"main": "main.js",
+	"repository": "https://github.com/sarthology/dragula",
+	"scripts": {
+		"start": "electron .",
+		"build": "build --mac",
+		"ship": "build --mac -p always",
+		"build:linux": "build --linux",
+		"ship:linux": "build --linux -p always"
+	},
+	"build": {
+		"appId": "com.github.sarthak.dragula",
+		"productName": "dragula",
+		"linux": {
+			"category": "Utility",
+			"target": [
+				{
+					"target": "AppImage",
+					"arch": [
+						"x64"
+					]
+				},
+				{
+					"target": "deb",
+					"arch": [
+						"x64"
+					]
+				},
+				{
+					"target": "tar.gz",
+					"arch": [
+						"x64"
+					]
+				}
+			]
+		}
+	},
+	"author": "Sarthology <something@something.com>",
+	"license": "ISC",
+	"devDependencies": {
+		"electron": "^7.2.4",
+		"electron-builder": "^20.39.0",
+		"eslint": "^5.12.0",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-plugin-prettier": "^3.0.1",
+		"prettier": "^1.16.4"
+	},
+	"dependencies": {
+		"electron-dl": "^1.12.0",
+		"electron-positioner": "^4.1.0",
+		"electron-store": "^2.0.0",
+		"electron-updater": "^4.0.6",
+		"macaddress": "^0.2.9",
+		"request": "^2.88.0",
+		"request-promise-native": "^1.0.7"
+	}
 }

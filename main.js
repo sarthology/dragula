@@ -1,15 +1,22 @@
 'use strict';
 
 // Dependencies
-const { app, BrowserWindow, ipcMain, nativeImage, clipboard, dialog } = require('electron');
+const {
+	app,
+	BrowserWindow,
+	ipcMain,
+	nativeImage,
+	clipboard,
+	dialog
+} = require('electron');
 const { download } = require('electron-dl');
-const {autoUpdater} = require('electron-updater');
+const { autoUpdater } = require('electron-updater');
 var Positioner = require('electron-positioner');
 const Store = require('electron-store');
 
 // Native imports
 const fs = require('fs');
-const { platform } = require('os')
+const { platform } = require('os');
 const store = new Store();
 
 // Global Variables
@@ -25,7 +32,10 @@ function createWindow() {
 		resizable: false,
 		frame: false,
 		autoHideMenuBar: true,
-		alwaysOnTop: true
+		alwaysOnTop: true,
+		webPreferences: {
+			nodeIntegration: true
+		}
 	});
 	positioner = new Positioner(win);
 	positioner.move('center');
@@ -36,14 +46,14 @@ function createWindow() {
 // Function to handle native drag and drop
 ipcMain.on('ondragstart', (event, filePath) => {
 	let file = nativeImage.createFromDataURL(filePath);
-	fs.writeFile(app.getPath('temp')+'/image.png', file.toPNG(), (err) => {
-		if(err) console.log(err);
+	fs.writeFile(app.getPath('temp') + '/image.png', file.toPNG(), err => {
+		if (err) console.log(err);
 		event.sender.startDrag({
-			file: app.getPath('temp')+'/image.png',
+			file: app.getPath('temp') + '/image.png',
 			icon: file
 		});
-		store.set('settings.dragCount',store.get('settings.dragCount')+1);
-		if(store.get('settings.dragCount')%50 == 0){
+		store.set('settings.dragCount', store.get('settings.dragCount') + 1);
+		if (store.get('settings.dragCount') % 50 == 0) {
 			event.sender.send('checkDrag');
 			win.setBounds({
 				width: 550,
@@ -55,17 +65,16 @@ ipcMain.on('ondragstart', (event, filePath) => {
 });
 
 // Function to handle native download
-ipcMain.on('download', (event,args) => {
-	download(BrowserWindow.getFocusedWindow(),args.url);
+ipcMain.on('download', (event, args) => {
+	download(BrowserWindow.getFocusedWindow(), args.url);
 });
 
 // Function to copy markdown code to clipboard
-ipcMain.on('link', (event,args) => {
-	if(store.get('settings.link')==='normal'){
+ipcMain.on('link', (event, args) => {
+	if (store.get('settings.link') === 'normal') {
 		clipboard.writeText(args.url);
-	}
-	else{
-		clipboard.writeText('![alt data]('+ args.url+')');
+	} else {
+		clipboard.writeText('![alt data](' + args.url + ')');
 	}
 });
 
@@ -73,7 +82,7 @@ ipcMain.on('link', (event,args) => {
 ipcMain.on('open', () => {
 	win.setBounds({
 		width: 300,
-		height: 200,
+		height: 200
 	});
 	setPosition();
 });
@@ -82,7 +91,7 @@ ipcMain.on('open', () => {
 ipcMain.on('close', () => {
 	win.setBounds({
 		width: 100,
-		height: 50,
+		height: 50
 	});
 	setPosition();
 });
@@ -95,20 +104,19 @@ ipcMain.on('setting', () => {
 	positioner.move('center');
 });
 
-let setPosition = ()=>{
-	if(store.get('settings.position')){
+let setPosition = () => {
+	if (store.get('settings.position')) {
 		positioner.move(store.get('settings.position'));
-	}
-	else{
+	} else {
 		positioner.move('bottomRight');
 	}
 };
 
 // App ready event
-app.on('ready', function () {
+app.on('ready', function() {
 	createWindow();
 
-	if(platform() !== 'linux') {
+	if (platform() !== 'linux') {
 		autoUpdater.checkForUpdates();
 	}
 });
@@ -119,29 +127,35 @@ ipcMain.on('app_quit', (event, info) => {
 });
 
 autoUpdater.on('update-available', () => {
-	dialog.showMessageBox({
-		type: 'info',
-		title: 'Found Updates',
-		message: 'Found updates, do you want update now?',
-		buttons: ['Sure', 'No']
-	}, (buttonIndex) => {
-		if (buttonIndex === 0) {
-			autoUpdater.downloadUpdate();
+	dialog.showMessageBox(
+		{
+			type: 'info',
+			title: 'Found Updates',
+			message: 'Found updates, do you want update now?',
+			buttons: ['Sure', 'No']
+		},
+		buttonIndex => {
+			if (buttonIndex === 0) {
+				autoUpdater.downloadUpdate();
 
-			dialog.showMessageBox({
-				type: 'info',
-				title: 'Downloading',
-				message: 'Updates are downloading, will notify once done.',
-			});
+				dialog.showMessageBox({
+					type: 'info',
+					title: 'Downloading',
+					message: 'Updates are downloading, will notify once done.'
+				});
+			}
 		}
-	});
+	);
 });
 
 autoUpdater.on('update-downloaded', () => {
-	dialog.showMessageBox({
-		title: 'Install Updates',
-		message: 'Updates downloaded, application will be quit for update...'
-	}, () => {
-		setImmediate(() => autoUpdater.quitAndInstall());
-	});
+	dialog.showMessageBox(
+		{
+			title: 'Install Updates',
+			message: 'Updates downloaded, application will be quit for update...'
+		},
+		() => {
+			setImmediate(() => autoUpdater.quitAndInstall());
+		}
+	);
 });
