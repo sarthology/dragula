@@ -55,7 +55,7 @@
 		"electron-store": "^2.0.0",
 		"electron-updater": "^4.0.6",
 		"macaddress": "^0.2.9",
-		"request": "^2.88.0",
+		"request": "^2.88.2",
 		"request-promise-native": "^1.0.7"
 	}
 }
