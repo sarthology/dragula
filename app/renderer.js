@@ -216,8 +216,8 @@ subcribe.onclick = (event) => {
 	event.preventDefault();
 
 	if (validateEmail(emailInput.value)) {
-		macaddress.one(function (err, mac) {
-			var value = api.subscribe(emailInput.value, mac)
+		macaddress.one(async function (err, mac) {
+			var value = await api.subscribe(emailInput.value, mac)
 
 			store.set('uid', JSON.parse(value).user._id);
 
