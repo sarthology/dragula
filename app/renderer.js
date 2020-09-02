@@ -216,10 +216,11 @@ subcribe.onclick = (event) => {
 	event.preventDefault();
 
 	if (validateEmail(emailInput.value)) {
-		macaddress.one(function (err, mac) {
-			api.subscribe(emailInput.value, mac).then(value => {
-				store.set('uid', JSON.parse(value).user._id);
-			});
+		macaddress.one(async function (err, mac) {
+			var value = await api.subscribe(emailInput.value, mac)
+
+			store.set('uid', JSON.parse(value).user._id);
+
 		});
 		store.set('settings.onboarded', true);
 		store.set('settings.dragCount', 0);

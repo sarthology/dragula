@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request-promise-native');
+const request = require('request');
 const Store = require('electron-store');
 const os = require('os');
 
@@ -9,18 +9,22 @@ const pJSON = require('../../package.json');
 const store = new Store();
 
 const subscribe = (email, mac) => {
-	return request.post('https://tmxnx.com/dragula/users/subscribe', {
-		form: {
+	request.post('https://api.mxnx.com/api/dragula/subscribe', {
+		json: {
 			email: email,
 			macAddress: mac,
 			platform: os.platform(),
 			version: pJSON.version
 		}
+	}, (err, res)=>{
+		if(err)
+			return err;
+		return res.body;
 	});
 };
 
 const updateUser = (uid, status) => {
-	return request.patch('https://tmxnx.com/dragula/users/updateUser/' + uid, {
+	return request.patch('https://api.tmxnx.com/dragula/update/' + uid, {
 		form: {
 			active: status,
 			platform: os.platform(),
