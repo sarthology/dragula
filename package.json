@@ -15,6 +15,9 @@
 	"build": {
 		"appId": "com.github.sarthak.dragula",
 		"productName": "dragula",
+		"mac": {
+			"target": "dmg"
+		},
 		"linux": {
 			"category": "Utility",
 			"target": [
@@ -42,7 +45,7 @@
 	"author": "Sarthology <something@something.com>",
 	"license": "ISC",
 	"devDependencies": {
-		"electron": "^7.2.4",
+		"electron": "^9.1.0",
 		"electron-builder": "^20.39.0",
 		"eslint": "^5.12.0",
 		"eslint-config-prettier": "^4.1.0",
