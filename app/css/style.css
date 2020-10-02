@@ -200,6 +200,10 @@ video {
   animation-duration: 1s;
   animation-delay: 6s;
   animation-fill-mode: forwards;
+  user-select: unset;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .how-to h1,
@@ -274,7 +278,11 @@ video {
   font-family: "OpenSans";
   margin: 0;
   font-size: 22px;
-  display: none
+  display: none;
+  user-select: unset;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .help .active {
